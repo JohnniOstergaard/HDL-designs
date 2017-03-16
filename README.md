@@ -2,8 +2,8 @@
   This repository is a bunch of HDL code for use across projects.
 
 ## Organization
-  This repository contains projects separated in subfolders under the top level and named after the Content list title.
-  Each project folder contains the a **Design.VHDL, Testbench.VHDL, Design.Tcl** 
+  This repository contains projects separated in subfolders under the top level and named after the Content list title.<br>
+  Each project folder contains the a **Design.VHDL, Testbench.VHDL, Design.Tcl**<br> 
   The Tcl file may save you time if you using a simulation tool like Altera ModelSim.
   
 ## Contents
