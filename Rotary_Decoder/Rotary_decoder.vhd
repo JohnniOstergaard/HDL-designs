@@ -7,7 +7,7 @@
 --   Copyright:      (c) 2017 Johnni Østergaard
 --   Credits:         
 --   License:        MIT License
---   Compatibility:	VHDL-2008
+--   Compatibility:  VHDL-2008
 --Progress ======================================================================
 --   Status:         Development
 --   Version:        1.0.0        | Major.minor.patch
@@ -24,14 +24,14 @@ library ieee;
 
 entity Rotary_decoder is	
 	port( Clk   :in  std_logic;							--System clock
-			Rst   :in  std_logic;							--Reset logic
-			Mode  :in  std_logic;							--0=Pulse detecting mode, 1=Edge detecting mode
-			A     :in  std_logic; 							--A-phase of the Quadrature signal, (Active low)
-			B     :in  std_logic;							--B-phase of the Quadrature signal,	(Active low)
-			Z     :in  std_logic; 							--Z-phase tricker one per rotation, (Active low)
+			Rst   :in  std_logic;						--Reset logic
+			Mode  :in  std_logic;						--0=Pulse detecting mode, 1=Edge detecting mode
+			A     :in  std_logic; 						--A-phase of the Quadrature signal, (Active low)
+			B     :in  std_logic;						--B-phase of the Quadrature signal,	(Active low)
+			Z     :in  std_logic; 						--Z-phase tricker one per rotation, (Active low)
 			Dir   :out std_logic := '0'; 					--Direction of rotation detection
 			Pulse :out std_logic := '0';					--Quadrature Pulse detection
-			Rot   :out std_logic := '0' );				--Rotation Pulse detection
+			Rot   :out std_logic := '0' );					--Rotation Pulse detection
 end Rotary_decoder;
 
 architecture Behavioral of Rotary_decoder is	
@@ -59,7 +59,7 @@ architecture Behavioral of Rotary_decoder is
 			Rot_temp			 <= '0';
 			
 		elsif(rising_edge(Clk)) then
-			Sensor <= (A & B);									--Latch Quadrature inputs
+			Sensor <= (A & B);						--Latch Quadrature inputs
 			
 			--Rotary Contact chatter Filter=======================================
 			case Sensor is
@@ -155,7 +155,7 @@ architecture Behavioral of Rotary_decoder is
 							Pulse <= '0';										--Stop Step pulse
 						end if;
 						
-					when others => Pulse <= '0';							--Stop Step pulse
+					when others => Pulse <= '0';			--Stop Step pulse
 				end case;
 			end if;
 				
