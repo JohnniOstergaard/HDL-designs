@@ -2,8 +2,8 @@
   This repository is a bunch of HDL code for use across projects.
   
 ## Test_0
-![Rotary_decoder_Test0](images/Rotary_decoder_Test0.png)
-![Rotary_decoder_Test0](images/Rotary_decoder_Test0.png "Rotary_Decoder_Test_0")
+![Rotary_decoder_Test0](Images/Rotary_decoder_Test0.png)
+![Rotary_decoder_Test0](Images/Rotary_decoder_Test0.png "Rotary_Decoder_Test_0")
 
 ## Test_1
 
