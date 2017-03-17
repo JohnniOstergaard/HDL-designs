@@ -7,15 +7,15 @@
 > ===========================================================================================<br>
 > **===================================[Pulse detecting mode]=====================================**<br>
 > ===========================================================================================<br>
-> **Test_0:** (Mode 0)<br>
+> **Test_0:**<br>
 > Testing CWW Rotation.
 > ![Rotary_decoder_Test0](Images/Rotary_decoder_Test0.png "Rotary_Decoder_Test_0")
 >
-> **Test_1:** (Mode 0)<br>
+> **Test_1:**<br>
 > Testing CW Rotation.
 > ![Rotary_decoder_Test1](Images/Rotary_decoder_Test1.png "Rotary_Decoder_Test_1")
 >
-> **Test_2:** (Mode 0)<br>
+> **Test_2:**<br>
 > Testing change in direction.
 > ![Rotary_decoder_Test2](Images/Rotary_decoder_Test2.png "Rotary_Decoder_Test_2")
 >
