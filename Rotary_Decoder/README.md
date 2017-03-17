@@ -4,7 +4,7 @@
 ## RTL simulations
   These tests are ...
  
-> ========================================[Pulse detecting mode]========================================<br>
+> ====================================[Pulse detecting mode]====================================<br>
 > **Test_0:** (Mode 0)<br>
 > This test is ...
 > ![Rotary_decoder_Test0](Images/Rotary_decoder_Test0.png "Rotary_Decoder_Test_0")
