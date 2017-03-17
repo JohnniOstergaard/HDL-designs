@@ -29,7 +29,7 @@ architecture Behavioral of TB_Rotary_decoder is
 	constant Clk_period :time := 200 ns;						--1/(200ns *10^-3) = 5MHz
 		
 	type State_machine is(None, Reset, Test_0, Test_1, Test_2, Test_3, Test_4);	--State names
-	signal Test_case: State_machine;												--State machines signal
+	signal Test_case: State_machine;						--State machines signal
 		
 	component Rotary_decoder
 		port( Clk   :in  std_logic;
@@ -299,21 +299,21 @@ architecture Behavioral of TB_Rotary_decoder is
 		--Procedure for test 2=====================================================================
 			--Testing change in direction in mode 0
 		procedure Test_input2(signal Test_case     :out State_machine;
-									 signal Encoder_Ena   :out std_logic;
-									 signal Encoder_CW    :out std_logic;
-									 signal Rst           :out std_logic;
-									 signal Mode          :out std_logic;
-									 signal Z  		       :out std_logic;
-									 signal Dir  		    :in  std_logic;
-									 signal Pulse         :in  std_logic;
-									 signal Rot   		    :in  std_logic ) is
+				      signal Encoder_Ena   :out std_logic;
+				      signal Encoder_CW    :out std_logic;
+				      signal Rst           :out std_logic;
+				      signal Mode          :out std_logic;
+				      signal Z  	   :out std_logic;
+				      signal Dir  	   :in  std_logic;
+				      signal Pulse         :in  std_logic;
+				      signal Rot   	   :in  std_logic ) is
 		begin
 			--Reset to avoid test case dependence
 			Reset(Test_case => Test_case,
-					Rst       => Rst,
-					Dir 		 => Dir,
-					Pulse   	 => Pulse,
-					Rot  		 => Rot );
+			      Rst       => Rst,
+			      Dir 	=> Dir,
+			      Pulse   	=> Pulse,
+			      Rot  	=> Rot );
 			
 			--Change state
 			Test_case <= Test_2;	
@@ -323,7 +323,7 @@ architecture Behavioral of TB_Rotary_decoder is
 			Mode        <= '0';
 			Encoder_Ena <= '1';					--Enable encoder
 			Encoder_CW  <= '0';					--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';					--Set rotation input
+			z 	    <= '1';					--Set rotation input
 				
 			--Verifying response to stimulus 0---------------------------------------------
 			wait_rclk(6);
@@ -366,7 +366,7 @@ architecture Behavioral of TB_Rotary_decoder is
 			Mode        <= '0';
 			Encoder_Ena <= '1';			--Enable encoder
 			Encoder_CW  <= '1';			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';			--Set rotation input
+			z 	    <= '1';			--Set rotation input
 			
 			--Verifying response to stimulus 0---------------------------------------------
 			for i in 0 to 2 loop
@@ -443,7 +443,7 @@ architecture Behavioral of TB_Rotary_decoder is
 			Mode        <= '0';
 			Encoder_Ena <= '1';			--Enable encoder
 			Encoder_CW  <= '0';			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';			--Set rotation input
+			z 	    <= '1';			--Set rotation input
 			
 			--Verifying response to stimulus 1---------------------------------------------
 			for i in 0 to 2 loop
@@ -521,7 +521,7 @@ architecture Behavioral of TB_Rotary_decoder is
 			Mode        <= '0';
 			Encoder_Ena <= '0';			--Enable encoder
 			Encoder_CW  <= '0';			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';			--Set rotation input
+			z 	    <= '1';			--Set rotation input
 			
 			--Setup stimulus 2-------------------------------------------------------------
 			wait_rclk(1);
@@ -564,22 +564,22 @@ architecture Behavioral of TB_Rotary_decoder is
 		--Procedure for test 3=====================================================================
 			--Testing the CWW encoder input in mode 1
 		procedure Test_input3(signal Test_case     :out State_machine;
-									 constant Encoder_Dir :in  std_logic;
-									 signal Encoder_Ena   :out std_logic;
-									 signal Encoder_CW    :out std_logic;
-									 signal Rst           :out std_logic;
-									 signal Mode          :out std_logic;
-									 signal Z  		       :out std_logic;
-									 signal Dir  		    :in  std_logic;
-									 signal Pulse         :in  std_logic;
-									 signal Rot   		    :in  std_logic ) is
+				      constant Encoder_Dir :in  std_logic;
+				      signal Encoder_Ena   :out std_logic;
+				      signal Encoder_CW    :out std_logic;
+				      signal Rst           :out std_logic;
+				      signal Mode          :out std_logic;
+				      signal Z  	   :out std_logic;
+				      signal Dir  	   :in  std_logic;
+				      signal Pulse         :in  std_logic;
+				      signal Rot   	   :in  std_logic ) is
 		begin
 			--Reset to avoid test case dependence
 			Reset(Test_case => Test_case,
-					Rst       => Rst,
-					Dir 		 => Dir,
-					Pulse   	 => Pulse,
-					Rot  		 => Rot );
+			      Rst       => Rst,
+			      Dir 	=> Dir,
+			      Pulse   	=> Pulse,
+			      Rot  	=> Rot );
 			
 			--Change state
 			Test_case <= Test_3;	
@@ -587,9 +587,9 @@ architecture Behavioral of TB_Rotary_decoder is
 			--Setup stimulus 0-------------------------------------------------------------
 			wait_rclk(1);
 			Mode        <= '1';
-			Encoder_Ena <= '1';					--Enable encoder
+			Encoder_Ena <= '1';			--Enable encoder
 			Encoder_CW  <= Encoder_Dir;		--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';					--Set rotation input
+			z 	    <= '1';			--Set rotation input
 				
 			--Verifying response to stimulus 0---------------------------------------------
 			wait_rclk(4);
@@ -628,9 +628,9 @@ architecture Behavioral of TB_Rotary_decoder is
 			--Setup stimulus 1-------------------------------------------------------------
 			wait_fclk(1);
 			Mode        <= '1';
-			Encoder_Ena <= '0';						--Enable encoder
+			Encoder_Ena <= '0';				--Enable encoder
 			Encoder_CW  <= Encoder_Dir;			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';						--Set rotation input
+			z 	    <= '1';				--Set rotation input
 			
 			--Verifying response to stimulus 0---------------------------------------------
 			wait_rclk(1);
@@ -651,9 +651,9 @@ architecture Behavioral of TB_Rotary_decoder is
 			--Setup stimulus 2-------------------------------------------------------------
 			wait_fclk(1);
 			Mode        <= '1';
-			Encoder_Ena <= '1';						--Enable encoder
+			Encoder_Ena <= '1';				--Enable encoder
 			Encoder_CW  <= Encoder_Dir;			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';						--Set rotation input
+			z 	    <= '1';				--Set rotation input
 			
 			--Verifying response to stimulus 0---------------------------------------------
 			wait_rclk(1);
@@ -725,9 +725,9 @@ architecture Behavioral of TB_Rotary_decoder is
 			--Setup stimulus 3-------------------------------------------------------------
 			wait_fclk(1);
 			Mode        <= '1';
-			Encoder_Ena <= '0';						--Enable encoder
+			Encoder_Ena <= '0';				--Enable encoder
 			Encoder_CW  <= Encoder_Dir;			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';						--Set rotation input
+			z 	    <= '1';				--Set rotation input
 			
 			--Verifying response to stimulus 3---------------------------------------------
 			for i in 0 to 2 loop
@@ -769,21 +769,21 @@ architecture Behavioral of TB_Rotary_decoder is
 		--Procedure for test 4=====================================================================
 			--Testing change in direction in mode 1
 		procedure Test_input4(signal Test_case     :out State_machine;
-									 signal Encoder_Ena   :out std_logic;
-									 signal Encoder_CW    :out std_logic;
-									 signal Rst           :out std_logic;
-									 signal Mode          :out std_logic;
-									 signal Z  		       :out std_logic;
-									 signal Dir  		    :in  std_logic;
-									 signal Pulse         :in  std_logic;
-									 signal Rot   		    :in  std_logic ) is
+				      signal Encoder_Ena   :out std_logic;
+				      signal Encoder_CW    :out std_logic;
+				      signal Rst           :out std_logic;
+				      signal Mode          :out std_logic;
+				      signal Z  	   :out std_logic;
+				      signal Dir  	   :in  std_logic;
+				      signal Pulse         :in  std_logic;
+				      signal Rot   	   :in  std_logic ) is
 		begin
 			--Reset to avoid test case dependence
 			Reset(Test_case => Test_case,
-					Rst       => Rst,
-					Dir 		 => Dir,
-					Pulse   	 => Pulse,
-					Rot  		 => Rot );
+			      Rst       => Rst,
+			      Dir 	=> Dir,
+			      Pulse   	=> Pulse,
+			      Rot  	=> Rot );
 			
 			--Change state
 			Test_case <= Test_4;	
@@ -793,7 +793,7 @@ architecture Behavioral of TB_Rotary_decoder is
 			Mode        <= '1';
 			Encoder_Ena <= '1';					--Enable encoder
 			Encoder_CW  <= '0';					--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';					--Set rotation input
+			z 	    <= '1';					--Set rotation input
 				
 			--Verifying response to stimulus 0---------------------------------------------
 			wait_rclk(4);
@@ -824,7 +824,7 @@ architecture Behavioral of TB_Rotary_decoder is
 			Mode        <= '1';
 			Encoder_Ena <= '1';			--Enable encoder
 			Encoder_CW  <= '1';			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';			--Set rotation input
+			z 	    <= '1';			--Set rotation input
 			
 			--Verifying response to stimulus 0---------------------------------------------
 			wait_rclk(1);
@@ -867,7 +867,7 @@ architecture Behavioral of TB_Rotary_decoder is
 			Mode        <= '1';
 			Encoder_Ena <= '1';			--Enable encoder
 			Encoder_CW  <= '0';			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';			--Set rotation input
+			z 	    <= '1';			--Set rotation input
 			
 			--Verifying response to stimulus 1---------------------------------------------
 			wait_rclk(1);
@@ -910,7 +910,7 @@ architecture Behavioral of TB_Rotary_decoder is
 			Mode        <= '1';
 			Encoder_Ena <= '0';			--Enable encoder
 			Encoder_CW  <= '1';			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';			--Set rotation input
+			z 	    <= '1';			--Set rotation input
 			
 			--Verifying response to stimulus 2---------------------------------------------
 			wait_rclk(1);
@@ -943,14 +943,14 @@ architecture Behavioral of TB_Rotary_decoder is
 	begin   
 		uut: Rotary_decoder
 		port map( Clk   => Clk_sig,
-					 Rst   => Rst_sig,
-					 Mode  => Mode_sig,
-					 A     => A_sig,
-					 B     => B_sig,
-					 Z     => Z_sig,
-					 Dir   => Dir_sig,
-					 Pulse => Pulse_sig,
-					 Rot   => Rot_sig );
+			  Rst   => Rst_sig,
+			  Mode  => Mode_sig,
+			  A     => A_sig,
+			  B     => B_sig,
+			  Z     => Z_sig,
+			  Dir   => Dir_sig,
+			  Pulse => Pulse_sig,
+			  Rot   => Rot_sig );
 		
 		--Main Clock
 		Clk_process: process
@@ -964,95 +964,95 @@ architecture Behavioral of TB_Rotary_decoder is
 		--Test sequence====================================================================================
 		Test: process
 		begin 
-			wait for 10 ns;											--Startup time					
+			wait for 10 ns;						--Startup time					
 			
 			--Mode 0 ---------------------------------------------------------------------------------------
 			--Testing CWW Rotation
 --			Test_input0(Test_case   => Test_case,
---						   Encoder_Ena => Encoder_Ena,
---							Encoder_Dir => '0',						-- '1'=CW, '0'=CWW
---						   Encoder_CW  => Encoder_CW,
---							Rst   	   => Rst_sig,
---							Mode        => Mode_sig,
---							Z  		   => Z_sig,
---							Dir  		   => Dir_sig,
---							Pulse       => Pulse_sig,
---							Rot   	   => Rot_sig );
+--				    Encoder_Ena => Encoder_Ena,
+--				    Encoder_Dir => '0',				-- '1'=CW, '0'=CWW
+--				    Encoder_CW  => Encoder_CW,
+--				    Rst         => Rst_sig,
+--				    Mode        => Mode_sig,
+--				    Z  	        => Z_sig,
+--				    Dir         => Dir_sig,
+--				    Pulse       => Pulse_sig,
+--				    Rot         => Rot_sig );
 							
 			--Testing CW Rotation
 --			Test_input0(Test_case   => Test_case,
---						   Encoder_Ena => Encoder_Ena,
---							Encoder_Dir => '1',						-- '1'=CW, '0'=CWW
---						   Encoder_CW  => Encoder_CW,
---							Rst   	   => Rst_sig,
---							Mode        => Mode_sig,
---							Z  		   => Z_sig,
---							Dir  		   => Dir_sig,
---							Pulse       => Pulse_sig,
---							Rot   	   => Rot_sig );
+--				    Encoder_Ena => Encoder_Ena,
+--				    Encoder_Dir => '1',				-- '1'=CW, '0'=CWW
+--				    Encoder_CW  => Encoder_CW,
+--				    Rst         => Rst_sig,
+--				    Mode        => Mode_sig,
+--				    Z  	        => Z_sig,
+--				    Dir         => Dir_sig,
+--				    Pulse       => Pulse_sig,
+--				    Rot         => Rot_sig );
 				
 			--Testing change in direction
 --			Test_input2(Test_case   => Test_case,
---						   Encoder_Ena => Encoder_Ena,
---						   Encoder_CW  => Encoder_CW,
---							Rst   	   => Rst_sig,
---							Mode        => Mode_sig,
---							Z  		   => Z_sig,
---							Dir  		   => Dir_sig,
---							Pulse       => Pulse_sig,
---							Rot   	   => Rot_sig );
+--				    Encoder_Ena => Encoder_Ena,
+--				    Encoder_CW  => Encoder_CW,
+--				    Rst   	=> Rst_sig,
+--				    Mode        => Mode_sig,
+--				    Z  		=> Z_sig,
+--				    Dir  	=> Dir_sig,
+--				    Pulse       => Pulse_sig,
+--				    Rot   	=> Rot_sig );
 				
 			--Mode 1 ---------------------------------------------------------------------------------------
 			--Testing CWW Rotation
 			Test_input3(Test_case   => Test_case,
-						   Encoder_Ena => Encoder_Ena,
-							Encoder_Dir => '0',						-- '1'=CW, '0'=CWW
-						   Encoder_CW  => Encoder_CW,
-							Rst   	   => Rst_sig,
-							Mode        => Mode_sig,
-							Z  		   => Z_sig,
-							Dir  		   => Dir_sig,
-							Pulse       => Pulse_sig,
-							Rot   	   => Rot_sig );
+				    Encoder_Ena => Encoder_Ena,
+				    Encoder_Dir => '0',				-- '1'=CW, '0'=CWW
+				    Encoder_CW  => Encoder_CW,
+				    Rst   	=> Rst_sig,
+				    Mode        => Mode_sig,
+				    Z  		=> Z_sig,
+				    Dir  	=> Dir_sig,
+				    Pulse       => Pulse_sig,
+				    Rot   	=> Rot_sig );
 				
 			--Testing CW Rotation
 --			Test_input3(Test_case   => Test_case,
---						   Encoder_Ena => Encoder_Ena,
---							Encoder_Dir => '1',						-- '1'=CW, '0'=CWW
---						   Encoder_CW  => Encoder_CW,
---							Rst   	   => Rst_sig,
---							Mode        => Mode_sig,
---							Z  		   => Z_sig,
---							Dir  		   => Dir_sig,
---							Pulse       => Pulse_sig,
---							Rot   	   => Rot_sig );
+--				    Encoder_Ena => Encoder_Ena,
+--				    Encoder_Dir => '1',				-- '1'=CW, '0'=CWW
+--				    Encoder_CW  => Encoder_CW,
+--				    Rst   	=> Rst_sig,
+--				    Mode        => Mode_sig,
+--				    Z  		=> Z_sig,
+--				    Dir  	=> Dir_sig,
+--				    Pulse       => Pulse_sig,
+--				    Rot   	=> Rot_sig );
 				
 			--Testing change in direction
 --			Test_input4(Test_case   => Test_case,
---						   Encoder_Ena => Encoder_Ena,
---						   Encoder_CW  => Encoder_CW,
---							Rst   	   => Rst_sig,
---							Mode        => Mode_sig,
---							Z  		   => Z_sig,
---							Dir  		   => Dir_sig,
---							Pulse       => Pulse_sig,
---							Rot   	   => Rot_sig );
+--				    Encoder_Ena => Encoder_Ena,
+--				    Encoder_CW  => Encoder_CW,
+--				    Rst   	=> Rst_sig,
+--				    Mode        => Mode_sig,
+--				    Z  		=> Z_sig,
+--				    Dir  	=> Dir_sig,
+--				    Pulse       => Pulse_sig,
+--				    Rot   	=> Rot_sig );
 				
 			--Other tests ----------------------------------------------------------------------------------
 			--Testing Z pulse detection
---			Test_input1(Test_case   => Test_case,
---							Rst   	   => Rst_sig,
---							Z  		   => Z_sig,
---							Dir  		   => Dir_sig,
---							Pulse       => Pulse_sig,
---							Rot   	   => Rot_sig );
+--			Test_input1(Test_case => Test_case,
+--				    Rst       => Rst_sig,
+--				    Z  	      => Z_sig,
+--				    Dir       => Dir_sig,
+--				    Pulse     => Pulse_sig,
+--				    Rot       => Rot_sig );
 			
 			--Reseting------------------
 --			Reset(Test_case => Test_case,
---					Rst       => Rst_sig,
---					Dir 		 => Dir_sig,
---					Pulse   	 => Pulse_sig,
---					Rot  		 => Rot_sig );
+--			      Rst       => Rst_sig,
+--			      Dir 	=> Dir_sig,
+--			      Pulse   	=> Pulse_sig,
+--			      Rot  	=> Rot_sig );
 			wait;
 		end process;
 		
