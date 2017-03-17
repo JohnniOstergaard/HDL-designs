@@ -29,3 +29,11 @@
 > **Test_5:**<br>
 > This test is ...
 > ![Rotary_decoder_Test5](Images/Rotary_decoder_Test5.png "Rotary_Decoder_Test_5")
+>
+>
+> ==============================================================================================<br>
+>                                      [Z pulse detection]<br>
+> ==============================================================================================<br>
+> **Test_6:**<br>
+> This test is ...
+> ![Rotary_decoder_Test5](Images/Rotary_decoder_Test5.png "Rotary_Decoder_Test_5")
