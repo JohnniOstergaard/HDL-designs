@@ -17,10 +17,13 @@
 > This test is ...
 > ![Rotary_decoder_Test2](Images/Rotary_decoder_Test2.png "Rotary_Decoder_Test_2")
 >
-> -----------------------------[Edge detecting mode]-----------------------------<br>
->
+> ====================================[Edge detecting mode]=====================================<br>
 > **Test_3:**<br>
 > This test is ...
+> ![Rotary_decoder_Test3](Images/Rotary_decoder_Test3.png "Rotary_Decoder_Test_3")
 >
 > **Test_4:**<br>
+> This test is ...
+>
+> **Test_5:**<br>
 > This test is ...
