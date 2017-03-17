@@ -2,7 +2,7 @@
   This repository is a bunch of HDL code for use across projects.
   
 ## Test_0
-![alt text](https://drive.google.com/open?id=0B7VE4R2CFZ-Dc2lrVFBrMnF4a0E "Rotary_Decoder_Test_0")
+![alt text](https://drive.google.com/open?id=0B7VE4R2CFZ-Dc2lrVFBrMnF4a0E.png "Rotary_Decoder_Test_0")
 
 ## Test_1
 
@@ -17,7 +17,7 @@
   
 > **Test_0:**<br>
 > This test is ...
-> ![alt text](https://drive.google.com/open?id=0B7VE4R2CFZ-Dc2lrVFBrMnF4a0E "Rotary_Decoder_Test_0")
+> ![alt text](https://drive.google.com/open?id=0B7VE4R2CFZ-Dc2lrVFBrMnF4a0E.png "Rotary_Decoder_Test_0")
 >
 > **Test_1:**<br>
 > This test is ...
