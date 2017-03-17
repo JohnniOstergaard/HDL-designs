@@ -2,12 +2,12 @@
 --   Self verifying Modular testbench for the Rotary_decoder.
 --Information ===================================================================
 --   File name:      TB_Rotary_decoder.VHDL
---   Target file:	   Rotary_decoder.VHDL
+--   Target file:    Rotary_decoder.VHDL
 --   Engineer:       Johnni Østergaard
 --   Copyright:      (c) 2017 Johnni Østergaard
 --   Credits:         
 --   License:        MIT License
---   Compatibility:	VHDL-2008
+--   Compatibility:  VHDL-2008
 --Progress ======================================================================
 --   Status:         Development
 --   Version:        1.0.0        | Major.minor.patch
@@ -26,22 +26,21 @@ entity TB_Rotary_decoder is
 end TB_Rotary_decoder;
 
 architecture Behavioral of TB_Rotary_decoder is
-	constant Clk_period :time    := 200 ns;									--1/(200ns *10^-3) = 5MHz
+	constant Clk_period :time := 200 ns;						--1/(200ns *10^-3) = 5MHz
 		
-	type State_machine is(None, Reset, Test_0, Test_1, 
-										Test_2, Test_3, Test_4);					--State names
+	type State_machine is(None, Reset, Test_0, Test_1, Test_2, Test_3, Test_4);	--State names
 	signal Test_case: State_machine;												--State machines signal
 		
 	component Rotary_decoder
 		port( Clk   :in  std_logic;
-				Rst   :in  std_logic;
-				Mode  :in  std_logic;
-				A     :in  std_logic;
-				B     :in  std_logic;
-				Z     :in  std_logic;
-				Dir   :out std_logic;
-				Pulse :out std_logic;
-				Rot   :out std_logic );
+		      Rst   :in  std_logic;
+		      Mode  :in  std_logic;
+		      A     :in  std_logic;
+		      B     :in  std_logic;
+		      Z     :in  std_logic;
+		      Dir   :out std_logic;
+		      Pulse :out std_logic;
+		      Rot   :out std_logic );
 	end component;
 
 	signal Clk_sig   :std_logic :='0';
@@ -56,7 +55,7 @@ architecture Behavioral of TB_Rotary_decoder is
 		
 	signal Encoder_Ena :std_logic :='0';
 	signal Encoder_CW  :std_logic :='0';
-	signal count		 :unsigned(1 downto 0) := (others => '0');
+	signal count       :unsigned(1 downto 0) := (others => '0');
 	
 	--General control procedures===============================================================
 		--Latch input on (N) falling Clk edge
@@ -77,10 +76,10 @@ architecture Behavioral of TB_Rotary_decoder is
 		
 		--Reset device under test
 		procedure Reset(signal Test_case :out State_machine;
-							 signal Rst       :out std_logic;
-							 signal Dir 		:in  std_logic;
-							 signal Pulse     :in  std_logic;
-							 signal Rot  		:in  std_logic ) is
+				signal Rst       :out std_logic;
+				signal Dir       :in  std_logic;
+				signal Pulse     :in  std_logic;
+				signal Rot       :in  std_logic ) is
 		begin
 			--Change state
 			Test_case <= Reset;
@@ -109,22 +108,22 @@ architecture Behavioral of TB_Rotary_decoder is
 		--Procedure for test 0=====================================================================
 			--Testing the CWW encoder input in mode 0
 		procedure Test_input0(signal Test_case     :out State_machine;
-									 constant Encoder_Dir :in  std_logic;
-									 signal Encoder_Ena   :out std_logic;
-									 signal Encoder_CW    :out std_logic;
-									 signal Rst           :out std_logic;
-									 signal Mode          :out std_logic;
-									 signal Z  		       :out std_logic;
-									 signal Dir  		    :in  std_logic;
-									 signal Pulse         :in  std_logic;
-									 signal Rot   		    :in  std_logic ) is
+				      constant Encoder_Dir :in  std_logic;
+				      signal Encoder_Ena   :out std_logic;
+				      signal Encoder_CW    :out std_logic;
+				      signal Rst           :out std_logic;
+				      signal Mode          :out std_logic;
+				      signal Z  	   :out std_logic;
+				      signal Dir  	   :in  std_logic;
+				      signal Pulse         :in  std_logic;
+				      signal Rot   	   :in  std_logic ) is
 		begin
 			--Reset to avoid test case dependence
 			Reset(Test_case => Test_case,
-					Rst       => Rst,
-					Dir 		 => Dir,
-					Pulse   	 => Pulse,
-					Rot  		 => Rot );
+			      Rst       => Rst,
+			      Dir 	=> Dir,
+			      Pulse   	=> Pulse,
+			      Rot  	=> Rot );
 			
 			--Change state
 			Test_case <= Test_0;	
@@ -133,8 +132,8 @@ architecture Behavioral of TB_Rotary_decoder is
 			wait_rclk(1);
 			Mode        <= '0';
 			Encoder_Ena <= '1';					--Enable encoder
-			Encoder_CW  <= Encoder_Dir;		--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';					--Set rotation input
+			Encoder_CW  <= Encoder_Dir;				--Encoder Dir: 1=CW, 0=CWW
+			z 	    <= '1';					--Set rotation input
 				
 			--Verifying response to stimulus 0---------------------------------------------
 			wait_rclk(6);
@@ -192,7 +191,7 @@ architecture Behavioral of TB_Rotary_decoder is
 			Mode        <= '0';
 			Encoder_Ena <= '0';			--Enable encoder
 			Encoder_CW  <= '1';			--Encoder Dir: 1=CW, 0=CWW
-			z 				<= '1';			--Set rotation input
+			z 	    <= '1';			--Set rotation input
 			
 			--Verifying response to stimulus 0---------------------------------------------
 			for i in 0 to 2 loop
@@ -250,27 +249,27 @@ architecture Behavioral of TB_Rotary_decoder is
 		--Procedure for test 1=====================================================================
 			--Testing the CW encoder input in mode 0
 		procedure Test_input1(signal Test_case :out State_machine;
-									 signal Rst         :out std_logic;
-									 signal Z  		     :out std_logic;
-									 signal Dir  		  :in  std_logic;
-									 signal Pulse       :in  std_logic;
-									 signal Rot   		  :in  std_logic ) is	
+				      signal Rst       :out std_logic;
+				      signal Z         :out std_logic;
+				      signal Dir       :in  std_logic;
+				      signal Pulse     :in  std_logic;
+				      signal Rot       :in  std_logic ) is	
 		begin
 			--Reset to avoid test case dependence
 			Reset(Test_case => Test_case,
-					Rst       => Rst,
-					Dir 		 => Dir,
-					Pulse   	 => Pulse,
-					Rot  		 => Rot );
+			      Rst       => Rst,
+			      Dir 	=> Dir,
+			      Pulse   	=> Pulse,
+			      Rot  	=> Rot );
 			
 			--Change state
 			Test_case <= Test_1;	
 			
 			--Setup stimulus 0-------------------------------------------------------------
 			wait_fclk(1);
-			z 				<= '0';			--Set rotation input
+			z <= '0';			--Set rotation input
 			wait_fclk(1);
-			z 				<= '1';			--Set rotation input
+			z <= '1';			--Set rotation input
 		
 			--Verifying response to stimulus 0---------------------------------------------
 			wait_rclk(2);
