@@ -4,7 +4,7 @@
 ## RTL simulations
   These tests are ...
  
-> ----------------------------[Pulse detecting mode]----------------------------
+> ========================================[Pulse detecting mode]========================================<br>
 > **Test_0:** (Mode 0)<br>
 > This test is ...
 > ![Rotary_decoder_Test0](Images/Rotary_decoder_Test0.png "Rotary_Decoder_Test_0")
@@ -17,7 +17,7 @@
 > This test is ...
 > ![Rotary_decoder_Test2](Images/Rotary_decoder_Test2.png "Rotary_Decoder_Test_2")
 >
-> -----------------------------[Edge detecting mode]-----------------------------
+> -----------------------------[Edge detecting mode]-----------------------------<br>
 >
 > **Test_3:**<br>
 > This test is ...
