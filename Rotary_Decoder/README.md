@@ -24,6 +24,7 @@
 >
 > **Test_4:**<br>
 > This test is ...
+> ![Rotary_decoder_Test4](Images/Rotary_decoder_Test4.png "Rotary_Decoder_Test_4")
 >
 > **Test_5:**<br>
 > This test is ...
