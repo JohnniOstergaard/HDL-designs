@@ -10,6 +10,7 @@
 >
 > **Test_1:**<br>
 > This test is ...
+> ![Rotary_decoder_Test1](Images/Rotary_decoder_Test1.png "Rotary_Decoder_Test_1")
 >
 > **Test_2:**<br>
 > This test is ...
