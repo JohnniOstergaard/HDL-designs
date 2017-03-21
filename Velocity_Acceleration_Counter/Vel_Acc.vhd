@@ -9,7 +9,7 @@
 --   Compatibility:  VHDL-2008
 --Progress ======================================================================
 --   Status:         Development
---   Version:        1.0.0       | Major.minor.patch
+--   Version:        1.0.1       | Major.minor.patch
 --   Created:        20-03-2017
 --   Modified:       20-03-2017  | Base functionality validted in testbench
 --===============================================================================
@@ -43,8 +43,8 @@ architecture Behavioral of Vel_Acc is
 	begin
 	process(Clk, Rst) is
 		constant Maximum_int     :integer := to_integer(unsigned(Maximum));				--Maximum vector as integer type
-		variable Vel_sample_int  :integer range -Maximum_int to Maximum_int;				--Firste Velocity sample as integer type
-		variable Vel_sample2_int :integer range -Maximum_int to Maximum_int;				--Second Velocity sample as integer type
+		variable Vel_sample_int  :integer range -Maximum_int-1 to Maximum_int;				--Firste Velocity sample as integer type
+		variable Vel_sample2_int :integer range -Maximum_int-1 to Maximum_int;				--Second Velocity sample as integer type
 		
 	begin
 		if(Rst = '0') then
