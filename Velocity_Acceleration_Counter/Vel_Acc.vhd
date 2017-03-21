@@ -62,36 +62,37 @@ architecture Behavioral of Vel_Acc is
 				Vel_sample_int  := to_integer(signed(Vel_sample));						--Converted vel_sample  to int
 				Vel_sample2_int := to_integer(signed(Vel_sample2));						--Converted vel_sample2 to int
 				Vel             <= Vel_sample;									--Set new Velocity
-				
-				--Acc -------------------------------------------------------------------
-				if(Vel_sample > 0 and Vel_sample2 > 0) then
+
+				--Acc -------------------------------------------------------------------	
+				if((Vel_sample >  0 and Vel_sample2 >  0) or 
+				  ((Vel_sample >= 0 and Vel_sample2 >= 0) and Dir = '0' )) then
+						
 					Acc <= std_logic_vector(to_signed((Vel_sample2_int - Vel_sample_int),Acc'length));	--[1*] Set new Acceleration
-					
-				elsif(Vel_sample <= 0 and Vel_sample2 <= 0) then
-					Acc <= std_logic_vector(to_signed((Vel_sample_int - Vel_sample2_int),Acc'length));	--[2*] Set new Acceleration
-					
-				elsif(Vel_sample >= 0 and Vel_sample2 <= 0) then
+									  
+				elsif((Vel_sample <  0 and Vel_sample2 <  0) or
+				     ((Vel_sample <= 0 and Vel_sample2 <= 0) and Dir = '1' )) then
+						
+					Acc <= std_logic_vector(to_signed((Vel_sample_int - Vel_sample2_int),Acc'length));	--[2*] Set new Acceleration					  
+									  
+				elsif(Vel_sample > 0 and Vel_sample2 < 0) then
 					Acc <= std_logic_vector(to_signed(
 					(
 						(- Maximum_int - Vel_sample2_int) - (Maximum_int - Vel_sample_int)		--[3*] Set new Acceleration
-					),Acc'length));	
-					
+					),Acc'length));		
+						
 				else
 					Acc <= std_logic_vector(to_signed(
 					(
-						(- Maximum_int - Vel_sample_int) - (Maximum_int - Vel_sample2_int)		--[4*] Set new Acceleration
+						(Maximum_int + Vel_sample_int) - (Maximum_int - Vel_sample2_int)		--[4*] Set new Acceleration
 					),Acc'length));	
 				end if;
 				
 			--Predictive mode ==========================================================
 			elsif(unsigned(Clk_count) > abs(Vel_sample_int) +1) then
 				if(Mode = '1') then
-					--Vel(Bit_width-1) <= Dir;										--Set vel direction
-						
 					if(Vel_sample >= 0 and Vel_sample2 >= 0) then
 						Vel(Bit_width-2 downto 0) <= std_logic_vector(unsigned(Clk_count) -1);				--Set Predictive Velocity
 						Acc <= std_logic_vector(to_signed(Vel_sample_int,Acc'length) - signed(Vel) -1);			--Set Predictive Acceleration
-						
 					else
 						Vel(Bit_width-2 downto 0) <= std_logic_vector(unsigned(Maximum) - unsigned(Clk_count)+2);	--Set Predictive Velocity
 						Acc <= std_logic_vector(signed(Vel) - to_signed(Vel_sample_int,Acc'length) -1);			--Set Predictive Acceleration
@@ -99,20 +100,26 @@ architecture Behavioral of Vel_Acc is
 				end if;
 			end if;
 				
-				
 			--Clock edge Counter ========================================================
 			if(Pulse = '1') then
-				Pulse1_set              <= '1';											--The first pulse input
-				Vel_sample(Bit_width-1) <= Dir;											--Set vel_sample direction
-				Vel_sample2 		<= Vel_sample;										--Set vel_sample2 value
-				Clk_count  		<= (others => '0');									--Reset clk counter
-					
+				Pulse1_set  <= '1';												--The first pulse input
+				Vel_sample2 <= Vel_sample;											--Set vel_sample2 value
+				Clk_count   <= (others => '0');											--Reset clk counter
+												
+				--Set direction for Velocity sample	
+				if(Dir = '1' and unsigned(Clk_count) = 0) then
+					Vel_sample(Bit_width-1) <= '0';										--MSb = '0', B"1000_0000" = -128 not 0
+				else
+					Vel_sample(Bit_width-1) <= Dir;										--MSb = Dir
+				end if;
+				
+				--Set value for Velocity sample	
 				if(Dir = '0') then
 					Vel_sample(Bit_width-2 downto 0) <= Clk_count;								--Set vel_sample value
 				else
 					Vel_sample(Bit_width-2 downto 0) <= std_logic_vector(unsigned(Maximum(Bit_width-2 downto 0))+1 - unsigned(Clk_count));
 				end if;
-				
+			
 			elsif(unsigned(Clk_count) < unsigned(Maximum)) then
 				Clk_count <= Clk_count + '1';											--Count clks between pulse
 			end if;
