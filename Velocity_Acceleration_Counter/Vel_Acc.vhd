@@ -29,7 +29,7 @@ entity Vel_Acc is
 	      Dir    :in  std_logic;										--Step direction
 	      Mode   :in  std_logic;										--'0' = Normal, '1' = Predictive mode
 	      Vel    :out std_logic_vector(Bit_width-1 downto 0) := ('0', others => '1');			--Velocity, unit: [Clk cycles/Pulse]
-	      Acc    :out std_logic_vector(Bit_width downto 0)   := (others => '0') );				--Acceleration, unit: [delta (Clk cycles/Pulse)]
+	      Acc    :out std_logic_vector(Bit_width-1 downto 0) := (others => '0') );				--Acceleration, unit: [delta (Clk cycles/Pulse)]
 end Vel_Acc;
 
 architecture Behavioral of Vel_Acc is
