@@ -7,7 +7,7 @@
 > ===========================================================================================<br>
 > **==================================[Constant Velocity Test]=====================================**<br>
 > ===========================================================================================<br>
-> **Test_0:**<br>
+> **Test 0:**<br>
 > Case 0 | Testing constant clockwise velocity in normal mode.
 > ![Vel_Acc_Test0_Dir0_Mode0](Image/Test0_Dir0_Mode0_RTL_view.png "Vel_Acc Test0, Dir='0',Mode='0'")
 >
@@ -23,31 +23,31 @@
 > ===========================================================================================<br>
 > **================================[Increasing Acceleration Test]==================================**<br>
 > ===========================================================================================<br>
-> **Test_1:**<br>
-> Testing increasing clockwise acceleration in normal mode.
+> **Test 1:**<br>
+> Case 0 | Testing increasing clockwise acceleration in normal mode.
 > ![Vel_Acc_Test1_Dir0_Mode0](Image/Test1_Dir0_Mode0_RTL_view.png "Vel_Acc Test1, Dir='0',Mode='0'")
 >
-> Testing increasing counterclockwise acceleration in normal mode.
+> Case 1 | Testing increasing counterclockwise acceleration in normal mode.
 > ![Vel_Acc_Test1_Dir1_Mode0](Image/Test1_Dir1_Mode0_RTL_view.png "Vel_Acc Test1, Dir='1',Mode='0'")
 >
-> Testing increasing clockwise acceleration in predictive mode.
+> Case 2 | Testing increasing clockwise acceleration in predictive mode.
 > ![Vel_Acc_Test1_Dir0_Mode1](Image/Test1_Dir0_Mode1_RTL_view.png "Vel_Acc Test1, Dir='0',Mode='1'")
 >
-> Testing increasing counterclockwise acceleration in predictive mode.
+> Case 3 | Testing increasing counterclockwise acceleration in predictive mode.
 > ![Vel_Acc_Test1_Dir1_Mode1](Image/Test1_Dir1_Mode1_RTL_view.png "Vel_Acc Test1, Dir='1',Mode='1'")
 >
 > ===========================================================================================<br>
 > **===============================[Increasing Decreasing Test]====================================**<br>
 > ===========================================================================================<br>
-> **Test_2:**<br>
-> Testing decreasing clockwise acceleration in normal mode.
+> **Test 2:**<br>
+> Case 0 | Testing decreasing clockwise acceleration in normal mode.
 > ![Vel_Acc_Test2_Dir0_Mode0](Image/Test2_Dir0_Mode0_RTL_view.png "Vel_Acc Test2, Dir='0',Mode='0'")
 >
-> Testing decreasing counterclockwise acceleration in normal mode.
+> Case 0 | Testing decreasing counterclockwise acceleration in normal mode.
 > ![Vel_Acc_Test2_Dir1_Mode0](Image/Test2_Dir1_Mode0_RTL_view.png "Vel_Acc Test2, Dir='1',Mode='0'")
 >
-> Testing decreasing clockwise acceleration in predictive mode.
+> Case 0 | Testing decreasing clockwise acceleration in predictive mode.
 > ![Vel_Acc_Test2_Dir0_Mode1](Image/Test2_Dir0_Mode1_RTL_view.png "Vel_Acc Test2, Dir='0',Mode='1'")
 >
-> Testing decreasing counterclockwise acceleration in predictive mode.
+> Case 0 | Testing decreasing counterclockwise acceleration in predictive mode.
 > ![Vel_Acc_Test2_Dir1_Mode1](Image/Test2_Dir1_Mode1_RTL_view.png "Vel_Acc Test2, Dir='1',Mode='1'")
