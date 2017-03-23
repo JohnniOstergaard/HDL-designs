@@ -142,26 +142,26 @@ architecture Behavioral of Vel_Acc is
 			
 			--Clock edge Counter ========================================================
 			if(Pulse = '1') then
-				Pulse1_set    <= '1';																												--The first pulse input
-				Vel_sample2   <= Vel_sample;																										--Set vel_sample2 value
-				Clk_count     <= (others => '0');																								--Reset clk counter
+				Pulse1_set    <= '1';												--The first pulse input
+				Vel_sample2   <= Vel_sample;											--Set vel_sample2 value
+				Clk_count     <= (others => '0');										--Reset clk counter
 				
 				--Set direction for Velocity sample	
 				if(Dir = '1' and unsigned(Clk_count) = 0) then
-					Vel_sample(Bit_width-1) <= '0';																								--MSb = '0', B"1000_0000" = -128 not 0
+					Vel_sample(Bit_width-1) <= '0';										--MSb = '0', B"1000_0000" = -128 not 0
 				else
-					Vel_sample(Bit_width-1) <= Dir;																								--MSb = Dir
+					Vel_sample(Bit_width-1) <= Dir;										--MSb = Dir
 				end if;
 				
 				--Set value for Velocity sample	
 				if(Dir = '0') then
-					Vel_sample(Bit_width-2 downto 0) <= Clk_count;																			--Set vel_sample value
+					Vel_sample(Bit_width-2 downto 0) <= Clk_count;								--Set vel_sample value
 				else
 					Vel_sample(Bit_width-2 downto 0) <= std_logic_vector(unsigned(Maximum(Bit_width-2 downto 0))+1 - unsigned(Clk_count));
 				end if;
 				
 			elsif(unsigned(Clk_count) < unsigned(Maximum)) then
-				Clk_count <= Clk_count + '1';																										--Count clks between pulse
+				Clk_count <= Clk_count + '1';											--Count clks between pulse
 			end if;
 		end if;
 	end process;
