@@ -1,8 +1,9 @@
 # Vel_Acc_Counter
   Counting velocity and acceleration as clock cycles in between pulse.
 
-## RTL simulations
-  These simulations are executed and tested by the testbench.
+## RTL simulations of Vel_Acc.vhd
+  These simulations are executed and tested with a self-checking modular testbench (TB_Vel_Acc.vhd) and
+  The RTL trace view shown in the images below is setup with a tcl file (Vel_Acc.tcl).
 
 > ===========================================================================================<br>
 > **==================================[Constant Velocity Test]=====================================**<br>
