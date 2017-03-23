@@ -44,11 +44,11 @@
 > Case 0 | Testing decreasing clockwise acceleration in normal mode.
 > ![Vel_Acc_Test2_Dir0_Mode0](Image/Test2_Dir0_Mode0_RTL_view.png "Vel_Acc Test2, Dir='0',Mode='0'")
 >
-> Case 0 | Testing decreasing counterclockwise acceleration in normal mode.
+> Case 1 | Testing decreasing counterclockwise acceleration in normal mode.
 > ![Vel_Acc_Test2_Dir1_Mode0](Image/Test2_Dir1_Mode0_RTL_view.png "Vel_Acc Test2, Dir='1',Mode='0'")
 >
-> Case 0 | Testing decreasing clockwise acceleration in predictive mode.
+> Case 2 | Testing decreasing clockwise acceleration in predictive mode.
 > ![Vel_Acc_Test2_Dir0_Mode1](Image/Test2_Dir0_Mode1_RTL_view.png "Vel_Acc Test2, Dir='0',Mode='1'")
 >
-> Case 0 | Testing decreasing counterclockwise acceleration in predictive mode.
+> Case 3 | Testing decreasing counterclockwise acceleration in predictive mode.
 > ![Vel_Acc_Test2_Dir1_Mode1](Image/Test2_Dir1_Mode1_RTL_view.png "Vel_Acc Test2, Dir='1',Mode='1'")
