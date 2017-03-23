@@ -11,7 +11,7 @@
   **Rst Port:**<br>
   std_logic | Asynchronous reset of design<br>
   
-  **Pulse Port:**<br>  
+  **Pulse Port:**
   std_logic | Encoder step pulse<br> 
   
   **Dir Port:**<br>  
