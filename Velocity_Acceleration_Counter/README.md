@@ -5,9 +5,9 @@
   These simulations are executed and tested with a self-checking modular testbench (TB_Vel_Acc.vhd) and
   The RTL trace view shown in the images below is setup with a tcl file (Vel_Acc.tcl).
 
-> =================================================================================<br>
-> **============================[Constant Velocity Test]=============================**<br>
-> =================================================================================<br>
+> ===============================================================================<br>
+> **============================[Constant Velocity Test]===========================**<br>
+> ===============================================================================<br>
 > **Test 0:**<br>
 > Case 0 | Testing constant clockwise velocity in normal mode.
 > ![Vel_Acc_Test0_Dir0_Mode0](Image/Test0_Dir0_Mode0_RTL_view.png "Vel_Acc Test0, Dir='0',Mode='0'")
