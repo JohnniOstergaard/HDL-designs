@@ -2,7 +2,7 @@
 #   Test script for the TB_Vel_Acc testbench.
 #Information ===================================================================
 #   File name:      Vel_Acc.tcl
-# 	 Target file:	  TB_Vel_Acc.VHDL
+#   Target file:    TB_Vel_Acc.VHDL
 #   Engineer:       Johnni Østergaard
 #   Copyright:      (c) 2017 Johnni Østergaard
 #   Credits:         
