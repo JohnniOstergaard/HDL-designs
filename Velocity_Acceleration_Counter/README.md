@@ -1,6 +1,32 @@
 # Vel_Acc_Counter
   Counting velocity and acceleration as clock cycles in between pulse.
 
+  **Generic:**<br>
+  Allows easy scaling of the Port length for the Vel and Acc ports.
+  But the testbench is not ready for scaling do to the static values used to compare outputs with!
+  
+  **Clk Port:**<br>
+  std_logic | Clock port
+  
+  **Rst Port:**<br>
+  std_logic | Asynchronous reset of design
+  
+  **Pulse Port:**<br>  
+  std_logic | Encoder step pulse 
+  
+  **Dir Port:**<br>  
+  std_logic | Encoder direction
+  
+  **Mode Port:**<br>  
+  std_logic | The normal mode is updating the (Vel) and (Acc) output ports when a pulse occurs on the input port (Pulse).
+  The Predictive mode takes it one step further and update the (Vel) and (Acc) output ports in between inputs from the (pulse) port when   decreasing acceleration occurs this means a faster response when suddenly going from a high to a lower velocity.
+  
+  **Vel Port:**<br>  
+  std_logic_vector | encoded with a sign value where minus values is velocity in the counterclockwise direction and a plus values is       velocity in the clockwise direction. [Number of Clock periods between pulses]
+  
+  **Acc Port:**<br> 
+  std_logic_vector | encoded with a sign value where minus values is a decreasing acceleration and a plus values is an increasing         acceleration. [Velocity delta between pulses]
+
 ## RTL simulations of Vel_Acc.vhd
   These simulations are executed and tested with a self-checking modular testbench (TB_Vel_Acc.vhd) and
   The RTL trace view shown in the images below is setup with a tcl file (Vel_Acc.tcl).
@@ -38,7 +64,7 @@
 > ![Vel_Acc_Test1_Dir1_Mode1](Image/Test1_Dir1_Mode1_RTL_view.png "Vel_Acc Test1, Dir='1',Mode='1'")
 >
 > =============================================================================<br>
-> **============================[Increasing Decreasing Test]=========================**<br>
+> **============================[Decreasing Acceleration Test]=======================**<br>
 > =============================================================================<br>
 > **Test 2:**<br>
 > Case 0 | Testing decreasing clockwise acceleration in normal mode.
