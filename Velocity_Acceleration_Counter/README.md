@@ -6,7 +6,7 @@
   The RTL trace view shown in the images below is setup with a tcl file (Vel_Acc.tcl).
 
 > =============================================================================<br>
-> **============================[Constant Velocity Test]=========================**<br>
+> **============================[Constant Velocity Test]================================**<br>
 > =============================================================================<br>
 > **Test 0:**<br>
 > Case 0 | Testing constant clockwise velocity in normal mode.
