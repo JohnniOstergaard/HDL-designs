@@ -8,16 +8,16 @@
 > **==================================[Constant Velocity Test]=====================================**<br>
 > ===========================================================================================<br>
 > **Test_0:**<br>
-> 0.0) Testing constant clockwise velocity in normal mode.
+> Case 0 | Testing constant clockwise velocity in normal mode.
 > ![Vel_Acc_Test0_Dir0_Mode0](Image/Test0_Dir0_Mode0_RTL_view.png "Vel_Acc Test0, Dir='0',Mode='0'")
 >
-> 0.1) Testing constant counterclockwise velocity in normal mode.
+> Case 1 | Testing constant counterclockwise velocity in normal mode.
 > ![Vel_Acc_Test0_Dir1_Mode0](Image/Test0_Dir1_Mode0_RTL_view.png "Vel_Acc Test0, Dir='1',Mode='0'")
 >
-> 0.2) Testing constant clockwise velocity in predictive mode.
+> Case 2 | Testing constant clockwise velocity in predictive mode.
 > ![Vel_Acc_Test0_Dir0_Mode1](Image/Test0_Dir0_Mode1_RTL_view.png "Vel_Acc Test0, Dir='0',Mode='1'")
 >
-> 0.3) Testing constant counterclockwise velocity in predictive mode.
+> Case 3 | Testing constant counterclockwise velocity in predictive mode.
 > ![Vel_Acc_Test0_Dir1_Mode1](Image/Test0_Dir1_Mode1_RTL_view.png "Vel_Acc Test0, Dir='1',Mode='1'")
 >
 > ===========================================================================================<br>
