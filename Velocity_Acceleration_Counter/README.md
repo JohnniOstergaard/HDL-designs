@@ -5,38 +5,36 @@
   These simulations are executed and tested by the testbench.
 
 > ===========================================================================================<br>
-> **===================================[Constant Velocity Test]=====================================**<br>
+> **================================[Constant Velocity Test]==================================**<br>
 > ===========================================================================================<br>
 > **Test_0:**<br>
 > Testing constant CW velocity in normal mode.
 > ![Vel_Acc_Test0_Dir0_Mode0](Image/Test0_Dir0_Mode0_RTL_view.png "Vel_Acc Test0, Dir='0',Mode='0'")
 >
-> **Test_0:**<br>
 > Testing constant CCW velocity in normal mode.
 > ![Vel_Acc_Test0_Dir1_Mode0](Image/Test0_Dir1_Mode0_RTL_view.png "Vel_Acc Test0, Dir='1',Mode='0'")
 >
-> **Test_0:**<br>
 > Testing constant CW velocity in predictive mode.
 > ![Vel_Acc_Test0_Dir0_Mode1](Image/Test0_Dir0_Mode1_RTL_view.png "Vel_Acc Test0, Dir='0',Mode='1'")
 >
-> **Test_0:**<br>
 > Testing constant CCW velocity in predictive mode.
 > ![Vel_Acc_Test0_Dir1_Mode1](Image/Test0_Dir1_Mode1_RTL_view.png "Vel_Acc Test0, Dir='1',Mode='1'")
 >
 > ===========================================================================================<br>
-> **===================================[Edge detecting mode]=====================================**<br>
+> **==============================[Increasing Acceleration Test]================================**<br>
 > ===========================================================================================<br>
-> **Test_3:**<br>
-> Testing CWW Rotation.
-> ![Rotary_decoder_Test3](Images/Rotary_decoder_Test3.png "Rotary_Decoder_Test_3")
+> **Test_1:**<br>
+> Testing increasing CW acceleration in normal mode.
+> ![Vel_Acc_Test1_Dir0_Mode0](Image/Test1_Dir0_Mode0_RTL_view.png "Vel_Acc Test1, Dir='0',Mode='0'")
 >
-> **Test_4:**<br>
-> Testing CW Rotation.
-> ![Rotary_decoder_Test4](Images/Rotary_decoder_Test4.png "Rotary_Decoder_Test_4")
+> Testing increasing CCW acceleration in normal mode.
+> ![Vel_Acc_Test1_Dir1_Mode0](Image/Test1_Dir1_Mode0_RTL_view.png "Vel_Acc Test1, Dir='1',Mode='0'")
 >
-> **Test_5:**<br>
-> Testing change in direction.
-> ![Rotary_decoder_Test5](Images/Rotary_decoder_Test5.png "Rotary_Decoder_Test_5")
+> Testing increasing CW acceleration in predictive mode.
+> ![Vel_Acc_Test1_Dir0_Mode1](Image/Test1_Dir0_Mode1_RTL_view.png "Vel_Acc Test1, Dir='0',Mode='1'")
+>
+> Testing increasing CCW acceleration in predictive mode.
+> ![Vel_Acc_Test1_Dir1_Mode1](Image/Test1_Dir1_Mode1_RTL_view.png "Vel_Acc Test1, Dir='1',Mode='1'")
 >
 > ===========================================================================================<br>
 > **===================================[Z pulse detection]========================================**<br>
