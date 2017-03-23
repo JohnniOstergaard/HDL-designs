@@ -26,20 +26,20 @@ entity TB_Vel_Acc is
 end TB_Vel_Acc;
 
 architecture Behavioral of TB_Vel_Acc is
-	constant Bit_width  :integer := 8;															--16 Channel width in bits
-	constant Clk_period :time    := 20 ns;														--1/(20ns *10^-3) = 50MHz
+	constant Bit_width  :integer := 8;						--16 Channel width in bits
+	constant Clk_period :time    := 20 ns;						--1/(20ns *10^-3) = 50MHz
 		
 	type State_machine is(None, Reset, Test_0, Test_1, Test_2, Test_3 , Test_4);	--State names
-	signal Test_case: State_machine;																--State machines signal
+	signal Test_case: State_machine;						--State machines signal
 		
 	component Vel_Acc
 		port( Clk   :in  std_logic;
 		      Rst   :in  std_logic;
-				Pulse :in  std_logic;	
-				Dir   :in  std_logic;
-				Mode  :in  std_logic;
-				Vel   :out std_logic_vector(Bit_width-1 downto 0);
-				Acc   :out std_logic_vector(Bit_width-1 downto 0) );
+		      Pulse :in  std_logic;	
+		      Dir   :in  std_logic;
+		      Mode  :in  std_logic;
+		      Vel   :out std_logic_vector(Bit_width-1 downto 0);
+		      Acc   :out std_logic_vector(Bit_width-1 downto 0) );
 	end component;
 		
 	signal Clk_sig   :std_logic :='0';
@@ -69,27 +69,27 @@ architecture Behavioral of TB_Vel_Acc is
 		
 		--Test vectors
 		procedure Test_vector (constant n        :in  integer;
-									  variable Vector_0 :out std_logic_vector;
-									  variable Vector_1 :out std_logic_vector;
-									  variable Vector_2 :out std_logic_vector;
-									  variable Vector_3 :out std_logic_vector )is
+				       variable Vector_0 :out std_logic_vector;
+				       variable Vector_1 :out std_logic_vector;
+				       variable Vector_2 :out std_logic_vector;
+				       variable Vector_3 :out std_logic_vector )is
 				
 			variable Vector_temp :std_logic_vector(n-1 downto 0) := (others => '0');
 		begin
 			for i in 0 to (n-1) loop
 				Vector_temp := std_logic_vector(to_unsigned(i, Vector_temp'length));
-				Vector_0(i)	:= '0';																				--B"0000_..._0000"
-				Vector_1(i) := Vector_temp(0);																--B"1010_..._1010"
-				Vector_2(i) := not Vector_temp(0);															--B"0101_..._0101"
-				Vector_3(i)	:= '1';																				--B"1111_..._1111"
+				Vector_0(i) := '0';								--B"0000_..._0000"
+				Vector_1(i) := Vector_temp(0);							--B"1010_..._1010"
+				Vector_2(i) := not Vector_temp(0);						--B"0101_..._0101"
+				Vector_3(i) := '1';								--B"1111_..._1111"
 			end loop;
 		end procedure;
 		
 		--Reset device under test
 		procedure Reset(signal Test_case :out State_machine;
-							 signal Rst       :out std_logic;
-							 signal Vel       :in  std_logic_vector;
-							 signal Acc       :in  std_logic_vector) is
+				signal Rst       :out std_logic;
+				signal Vel       :in  std_logic_vector;
+				signal Acc       :in  std_logic_vector) is
 				
 			variable Vel_start :std_logic_vector(Bit_width-1 downto 0) := ('0', others => '1');
 			
@@ -119,40 +119,40 @@ architecture Behavioral of TB_Vel_Acc is
 		--Procedure for test 0=====================================================================
 			--Testing constant velocity
 		procedure Test_input0(signal   Test_case :out State_machine;
-									 signal   Rst   	  :out std_logic;
-									 signal   Pulse	  :out std_logic;
-									 signal   Dir	     :out std_logic;
-									 signal   Mode	     :out std_logic;
-									 constant Dir_set	  :in  std_logic;
-									 constant Mode_set  :in  std_logic;
-									 signal   Vel		  :in  std_logic_vector;
-									 signal   Acc 		  :in  std_logic_vector) is
+				      signal   Rst   	 :out std_logic;
+				      signal   Pulse	 :out std_logic;
+				      signal   Dir	 :out std_logic;
+				      signal   Mode	 :out std_logic;
+				      constant Dir_set	 :in  std_logic;
+				      constant Mode_set  :in  std_logic;
+				      signal   Vel	 :in  std_logic_vector;
+				      signal   Acc 	 :in  std_logic_vector) is
 				
-			variable Acc_Test_int :integer;																	--Acceleration test as integer type
-			variable Vel_Test_int :integer;																	--Velocity test as integer type
+			variable Acc_Test_int :integer;								--Acceleration test as integer type
+			variable Vel_Test_int :integer;								--Velocity test as integer type
 			variable Vel_int      :integer;
 			variable Acc_int      :integer;
 		begin
 			--Reset to avoid test case dependence 
 			Reset(Test_case => Test_case,
-					Rst       => Rst,		
-					Vel       => Vel,
-					Acc       => Acc);
+			      Rst       => Rst,		
+			      Vel       => Vel,
+			      Acc       => Acc);
 				
 			--Change state
 			Test_case <= Test_0;
 			
 			--Setup stimulus 0
 			wait_fclk(5);
-			Pulse	<= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Setup stimulus 1
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Verifying response to stimulus 0
 			wait_rclk(2);
@@ -203,9 +203,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Setup stimulus 2
 			wait_fclk(1);
-			Pulse	<= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Verifying response to stimulus 0
 			wait_rclk(1);
@@ -234,9 +234,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Setup stimulus 3
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Verifying response to stimulus 0
 			wait_rclk(1);
@@ -311,9 +311,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Setup stimulus 4
 			wait_fclk(1);
-			Pulse	<= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Verifying response to stimulus 2
 			wait_rclk(1);
@@ -341,9 +341,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Setup stimulus 5
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Verifying response to stimulus 3
 			wait_rclk(1);
@@ -393,9 +393,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Reset stimulus
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= '0';
-			Mode	<= '0';
+			Pulse <= '0';
+			Dir   <= '0';
+			Mode  <= '0';
 			
 			--Change state
 			Test_case <= None;
@@ -404,25 +404,25 @@ architecture Behavioral of TB_Vel_Acc is
 		--Procedure for test 1=====================================================================
 			--Testing increasing velocity
 		procedure Test_input1(signal   Test_case :out State_machine;
-									 signal   Rst   	  :out std_logic;
-									 signal   Pulse	  :out std_logic;
-									 signal   Dir	     :out std_logic;
-									 signal   Mode	     :out std_logic;
-									 constant Dir_set	  :in  std_logic;
-									 constant Mode_set  :in  std_logic;
-									 signal   Vel		  :in  std_logic_vector;
-									 signal   Acc 		  :in  std_logic_vector) is
+				      signal   Rst   	 :out std_logic;
+				      signal   Pulse	 :out std_logic;
+				      signal   Dir	 :out std_logic;
+				      signal   Mode	 :out std_logic;
+				      constant Dir_set	 :in  std_logic;
+				      constant Mode_set  :in  std_logic;
+				      signal   Vel       :in  std_logic_vector;
+				      signal   Acc 	 :in  std_logic_vector) is
 				
-			variable Acc_Test_int :integer;																	--Acceleration test as integer type
-			variable Vel_Test_int :integer;																	--Velocity test as integer type
+			variable Acc_Test_int :integer;								--Acceleration test as integer type
+			variable Vel_Test_int :integer;								--Velocity test as integer type
 			variable Vel_int      :integer;
 			variable Acc_int      :integer;
 		begin
 			--Reset to avoid test case dependence 
 			Reset(Test_case => Test_case,
-					Rst       => Rst,		
-					Vel       => Vel,
-					Acc       => Acc);
+			      Rst       => Rst,		
+			      Vel       => Vel,
+			      Acc       => Acc);
 				
 			--Change state
 			Test_case <= Test_1;
@@ -430,14 +430,14 @@ architecture Behavioral of TB_Vel_Acc is
 			--Setup stimulus 0
 			wait_fclk(15);
 			Pulse <= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 				
 			--Setup stimulus 1
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 				
 			--Verifying response to stimulus 0
 			wait_rclk(2);
@@ -486,9 +486,9 @@ architecture Behavioral of TB_Vel_Acc is
 				
 			--Setup stimulus 2
 			wait_fclk(1);
-			Pulse	  <= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 				
 			--Verifying response to stimulus 0
 			wait_rclk(1);
@@ -515,9 +515,9 @@ architecture Behavioral of TB_Vel_Acc is
 				
 			--Setup stimulus 3
 			wait_fclk(1);
-			Pulse	  <= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 				
 			--Verifying response to stimulus 0
 			wait_rclk(1);
@@ -589,9 +589,9 @@ architecture Behavioral of TB_Vel_Acc is
 				
 			--Setup stimulus 4
 			wait_fclk(1);
-			Pulse	  <= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 				
 			--Verifying response to stimulus 2
 			wait_rclk(1);
@@ -713,9 +713,9 @@ architecture Behavioral of TB_Vel_Acc is
 				
 			--Reset stimulus
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= '0';
-			Mode	<= '0';
+			Pulse <= '0';
+			Dir   <= '0';
+			Mode  <= '0';
 			
 			--Change state
 			Test_case <= None;
@@ -724,40 +724,40 @@ architecture Behavioral of TB_Vel_Acc is
 		--Procedure for test 2=====================================================================
 			--Testing decreasing velocity
 		procedure Test_input2(signal   Test_case :out State_machine;
-									 signal   Rst   	  :out std_logic;
-									 signal   Pulse	  :out std_logic;
-									 signal   Dir	     :out std_logic;
-									 signal   Mode	     :out std_logic;
-									 constant Dir_set	  :in  std_logic;
-									 constant Mode_set  :in  std_logic;
-									 signal   Vel		  :in  std_logic_vector;
-									 signal   Acc 		  :in  std_logic_vector) is
+				      signal   Rst   	 :out std_logic;
+				      signal   Pulse	 :out std_logic;
+				      signal   Dir	 :out std_logic;
+				      signal   Mode	 :out std_logic;
+				      constant Dir_set	 :in  std_logic;
+				      constant Mode_set  :in  std_logic;
+				      signal   Vel       :in  std_logic_vector;
+				      signal   Acc 	 :in  std_logic_vector) is
 				
-			variable Acc_Test_int :integer;																	--Acceleration test as integer type
-			variable Vel_Test_int :integer;																	--Velocity test as integer type
+			variable Acc_Test_int :integer;								--Acceleration test as integer type
+			variable Vel_Test_int :integer;								--Velocity test as integer type
 			variable Vel_int      :integer;
 			variable Acc_int      :integer;	
 		begin
 			--Reset to avoid test case dependence 
 			Reset(Test_case => Test_case,
-					Rst       => Rst,			
-					Vel       => Vel,
-					Acc       => Acc);
+			      Rst       => Rst,			
+			      Vel       => Vel,
+			      Acc       => Acc);
 				
 			--Change state
 			Test_case <= Test_2;
 			
 			--Setup stimulus 0
 			wait_fclk(5);
-			Pulse	<= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Setup stimulus 1
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Verifying response to stimulus 0
 			wait_rclk(2);
@@ -853,9 +853,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Setup stimulus 2
 			wait_fclk(1);
-			Pulse	<= '1';
+			Pulse <= '1';
 			Dir   <= Dir_set;
-			Mode	<= Mode_set;
+			Mode  <= Mode_set;
 			
 			--Verifying response to stimulus 0
 			wait_rclk(1);
@@ -892,9 +892,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Setup stimulus 3
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Verifying response to stimulus 0
 			wait_rclk(1);
@@ -976,8 +976,8 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Setup stimulus 4
 			wait_fclk(1);
-			Pulse	<= '1';
-			Dir	<= Dir_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
 			
 			--Verifying response to stimulus 2
 			wait_rclk(1);	
@@ -1015,8 +1015,8 @@ architecture Behavioral of TB_Vel_Acc is
 			--Setup stimulus 5
 			wait_fclk(1);
 			Pulse <= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Verifying response to stimulus 2
 			wait_rclk(1);	
@@ -1076,9 +1076,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Reset stimulus
 			wait_fclk(2);
-			Pulse	<= '0';
-			Dir	<= '0';
-			Mode	<= '0';
+			Pulse <= '0';
+			Dir   <= '0';
+			Mode  <= '0';
 			
 			--Change state
 			Test_case <= None;
@@ -1087,39 +1087,39 @@ architecture Behavioral of TB_Vel_Acc is
 		--Procedure for test 3=====================================================================
 			--Testing velocity range in both directions
 		procedure Test_input3(signal   Test_case :out State_machine;
-									 signal   Rst   	  :out std_logic;
-									 signal   Pulse	  :out std_logic;
-									 signal   Dir	     :out std_logic;
-									 signal   Mode	     :out std_logic;
-									 constant Dir_set	  :in  std_logic;
-									 constant Mode_set  :in  std_logic;
-									 signal   Vel		  :in  std_logic_vector;
-									 signal   Acc 		  :in  std_logic_vector) is
+				      signal   Rst   	 :out std_logic;
+				      signal   Pulse	 :out std_logic;
+				      signal   Dir	 :out std_logic;
+				      signal   Mode	 :out std_logic;
+				      constant Dir_set	 :in  std_logic;
+				      constant Mode_set  :in  std_logic;
+				      signal   Vel       :in  std_logic_vector;
+				      signal   Acc 	 :in  std_logic_vector) is
 				
-			variable Acc_Test_int :integer;																	--Acceleration test as integer type
-			variable Vel_Test_int :integer;																	--Velocity test as integer type
+			variable Acc_Test_int :integer;								--Acceleration test as integer type
+			variable Vel_Test_int :integer;								--Velocity test as integer type
 			variable Vel_int      :integer;
 			variable Acc_int      :integer;	
 		begin
 			--Start stimulus
-			Pulse	<= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Reset to avoid test case dependence 
 			Reset(Test_case => Test_case,
-					Rst       => Rst,			
-					Vel       => Vel,
-					Acc       => Acc);
+			      Rst       => Rst,			
+			      Vel       => Vel,
+			      Acc       => Acc);
 				
 			--Change state
 			Test_case <= Test_3;
 			
 			--Setup stimulus 0
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			wait_rclk(2);
 			
@@ -1214,9 +1214,9 @@ architecture Behavioral of TB_Vel_Acc is
 				
 			--Setup stimulus 1
 			wait_fclk(1);
-			Pulse	<= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			wait_rclk(1);
 			
@@ -1253,9 +1253,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Setup stimulus 2
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			wait_rclk(1);
 			
@@ -1295,12 +1295,12 @@ architecture Behavioral of TB_Vel_Acc is
 			--Verifying response to stimulus
 			--Expected outputs ----------------
 			if(Dir = '0') then
-					Vel_Test_int :=  127;
-					Acc_Test_int := -127;
-				else
-					Vel_Test_int := -127;
-					Acc_Test_int := -127;				
-				end if;
+				Vel_Test_int :=  127;
+				Acc_Test_int := -127;
+			else
+				Vel_Test_int := -127;
+				Acc_Test_int := -127;				
+			end if;
 			--Actual outputs ------------------
 			Acc_int := to_integer(signed(Acc));
 			Vel_int := to_integer(signed(Vel));
@@ -1315,9 +1315,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Reset stimulus
 			wait_fclk(2);
-			Pulse	<= '0';
-			Dir	<= '0';
-			Mode	<= '0';
+			Pulse <= '0';
+			Dir   <= '0';
+			Mode  <= '0';
 			
 			--Change state
 			Test_case <= None;
@@ -1326,30 +1326,30 @@ architecture Behavioral of TB_Vel_Acc is
 		--Procedure for test 4=====================================================================
 			--Testing velocity and Acceleration range when pulse input is outside counter range
 		procedure Test_input4(signal   Test_case :out State_machine;
-									 signal   Rst   	  :out std_logic;
-									 signal   Pulse	  :out std_logic;
-									 signal   Dir	     :out std_logic;
-									 signal   Mode	     :out std_logic;
-									 constant Dir_set	  :in  std_logic;
-									 constant Mode_set  :in  std_logic;
-									 signal   Vel		  :in  std_logic_vector;
-									 signal   Acc 		  :in  std_logic_vector) is
+				      signal   Rst   	 :out std_logic;
+				      signal   Pulse	 :out std_logic;
+				      signal   Dir	 :out std_logic;
+				      signal   Mode	 :out std_logic;
+				      constant Dir_set	 :in  std_logic;
+				      constant Mode_set  :in  std_logic;
+				      signal   Vel       :in  std_logic_vector;
+				      signal   Acc 	 :in  std_logic_vector) is
 				
-			variable Acc_Test_int :integer;																	--Acceleration test as integer type
-			variable Vel_Test_int :integer;																	--Velocity test as integer type
+			variable Acc_Test_int :integer;									--Acceleration test as integer type
+			variable Vel_Test_int :integer;									--Velocity test as integer type
 			variable Vel_int      :integer;
 			variable Acc_int      :integer;	
 		begin
 			--Start stimulus
-			Pulse	<= '1';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '1';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			--Reset to avoid test case dependence 
 			Reset(Test_case => Test_case,
-					Rst       => Rst,			
-					Vel       => Vel,
-					Acc       => Acc);
+			      Rst       => Rst,			
+			      Vel       => Vel,
+			      Acc       => Acc);
 				
 			--Change state
 			Test_case <= Test_4;
@@ -1357,9 +1357,9 @@ architecture Behavioral of TB_Vel_Acc is
 			-----------------
 			--Setup stimulus 0
 			wait_fclk(1);
-			Pulse	<= '0';
-			Dir	<= Dir_set;
-			Mode	<= Mode_set;
+			Pulse <= '0';
+			Dir   <= Dir_set;
+			Mode  <= Mode_set;
 			
 			wait_rclk(2);
 			
@@ -1440,9 +1440,9 @@ architecture Behavioral of TB_Vel_Acc is
 			
 			--Reset stimulus
 			wait_fclk(2);
-			Pulse	<= '0';
-			Dir	<= '0';
-			Mode	<= '0';
+			Pulse <= '0';
+			Dir   <= '0';
+			Mode  <= '0';
 			
 			--Change state
 			Test_case <= None;
@@ -1452,12 +1452,12 @@ architecture Behavioral of TB_Vel_Acc is
 	begin   
 		uut: Vel_Acc
 		port map( Clk   => Clk_sig,
-					 Rst   => Rst_sig,
-					 Pulse => Pulse_sig,
-					 Dir   => Dir_sig,
-					 Mode  => Mode_sig,
-					 Vel   => Vel_sig,
-					 Acc   => Acc_sig );
+			  Rst   => Rst_sig,
+			  Pulse => Pulse_sig,
+			  Dir   => Dir_sig,
+			  Mode  => Mode_sig,
+			  Vel   => Vel_sig,
+			  Acc   => Acc_sig );
 			
 		--Main Clock
 		Clk_process: process
@@ -1479,14 +1479,14 @@ architecture Behavioral of TB_Vel_Acc is
 			for U in std_logic range '0' to '1' loop
 				for I in std_logic range '0' to '1' loop
 					Test_input0(Test_case => Test_case,
-									Rst       => Rst_sig,
-									Pulse     => Pulse_sig,
-									Dir       => Dir_sig,
-									Mode      => Mode_sig,
-									Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
-									Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
-									Vel		 => Vel_sig,
-									Acc       => Acc_sig);
+						    Rst       => Rst_sig,
+						    Pulse     => Pulse_sig,
+						    Dir       => Dir_sig,
+						    Mode      => Mode_sig,
+						    Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
+						    Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
+						    Vel	      => Vel_sig,
+						    Acc       => Acc_sig);
 				end loop;	
 			end loop;
 			
@@ -1496,14 +1496,14 @@ architecture Behavioral of TB_Vel_Acc is
 			for U in std_logic range '0' to '1' loop
 				for I in std_logic range '0' to '1' loop
 					Test_input1(Test_case => Test_case,
-									Rst       => Rst_sig,
-									Pulse     => Pulse_sig,
-									Dir       => Dir_sig,
-									Mode      => Mode_sig,
-									Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
-									Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
-									Vel		 => Vel_sig,
-									Acc       => Acc_sig);
+						    Rst       => Rst_sig,
+						    Pulse     => Pulse_sig,
+						    Dir       => Dir_sig,
+						    Mode      => Mode_sig,
+						    Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
+						    Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
+						    Vel	      => Vel_sig,
+						    Acc       => Acc_sig);
 				end loop;	
 			end loop;
 			
@@ -1513,14 +1513,14 @@ architecture Behavioral of TB_Vel_Acc is
 			for U in std_logic range '0' to '1' loop
 				for I in std_logic range '0' to '1' loop
 					Test_input2(Test_case => Test_case,
-									Rst       => Rst_sig,
-									Pulse     => Pulse_sig,
-									Dir       => Dir_sig,
-									Mode      => Mode_sig,
-									Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
-									Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
-									Vel		 => Vel_sig,
-									Acc       => Acc_sig);
+						    Rst       => Rst_sig,
+						    Pulse     => Pulse_sig,
+						    Dir       => Dir_sig,
+						    Mode      => Mode_sig,
+						    Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
+						    Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
+						    Vel	      => Vel_sig,
+						    Acc       => Acc_sig);
 				end loop;
 			end loop;
 			
@@ -1530,14 +1530,14 @@ architecture Behavioral of TB_Vel_Acc is
 			for U in std_logic range '0' to '1' loop
 				for I in std_logic range '0' to '1' loop
 					Test_input3(Test_case => Test_case,
-									Rst       => Rst_sig,
-									Pulse     => Pulse_sig,
-									Dir       => Dir_sig,
-									Mode      => Mode_sig,
-									Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
-									Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
-									Vel		 => Vel_sig,
-									Acc       => Acc_sig);
+						    Rst       => Rst_sig,
+						    Pulse     => Pulse_sig,
+						    Dir       => Dir_sig,
+						    Mode      => Mode_sig,
+						    Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
+						    Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
+						    Vel	      => Vel_sig,
+						    Acc       => Acc_sig);
 				end loop;
 			end loop;
 			
@@ -1547,14 +1547,14 @@ architecture Behavioral of TB_Vel_Acc is
 			for U in std_logic range '0' to '1' loop
 				for I in std_logic range '0' to '1' loop
 					Test_input4(Test_case => Test_case,
-									Rst       => Rst_sig,
-									Pulse     => Pulse_sig,
-									Dir       => Dir_sig,
-									Mode      => Mode_sig,
-									Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
-									Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
-									Vel		 => Vel_sig,
-									Acc       => Acc_sig);
+						    Rst       => Rst_sig,
+						    Pulse     => Pulse_sig,
+						    Dir       => Dir_sig,
+						    Mode      => Mode_sig,
+						    Dir_set   => I,				--Direction: '0' = CW,     '1' = CCW
+						    Mode_set  => U,				--Mode:      '0' = Normal, '1' = Predictive mode
+						    Vel	      => Vel_sig,
+						    Acc       => Acc_sig);
 				end loop;
 			end loop;
 			
