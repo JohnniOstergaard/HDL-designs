@@ -1,23 +1,25 @@
 # Vel_Acc_Counter
   Counting velocity and acceleration as clock cycles in between pulse.
 
-  > **Generic:**<br>    Allows easy scaling of the Port length for the Vel and Acc ports.
-  >                     But the testbench is not ready for scaling do to the static values used to compare outputs with!<br>
+  ## Generic
+  > **Bit_width:** (positive)<br> Allows easy scaling of the Port length of the Vel, Acc ports and set the length of the       >                               counter by defining the number of bits in each port.<br>
+  >                               The testbench is not ready for scaling do to the static values used to compare outputs       >                               with!<br>
+  
+  ## IO Ports
+  > **Clk:** (std_logic)<br>   Clock port<br>
   > 
-  > **Clk Port:**<br>   std_logic | Clock port<br>
+  > **Rst:** (std_logic)<br>   Asynchronous reset of design<br>
   > 
-  > **Rst Port:**<br>   std_logic | Asynchronous reset of design<br>
+  > **Pulse:** (std_logic)<br> Step pulse from a rotary decoder<br> 
   > 
-  > **Pulse Port:**<br> std_logic | Encoder step pulse<br> 
+  > **Dir:** (std_logic)<br>   Step direction from a rotary decoder<br>
   > 
-  > **Dir Port:**<br>   std_logic | Encoder direction<br>
+  > **Port:** (std_logic)<br> The normal mode is updating the (Vel) and (Acc) output ports when a pulse occurs on the input     >                           port (Pulse).<br>
+  >                           The Predictive mode takes it one step further and update the (Vel) and (Acc) output ports in     >                           between inputs from the (pulse) port when decreasing acceleration occurs this means a faster     >                           response when suddenly going from a high to a lower velocity.<br>
   > 
-  > **Mode Port:** (std_logic)<br> The normal mode is updating the (Vel) and (Acc) output ports when a pulse occurs on the     >                                input port (Pulse).
-  >                                The Predictive mode takes it one step further and update the (Vel) and (Acc) output ports   >                                in between inputs from the (pulse) port when decreasing acceleration occurs this means a     >                                faster response when suddenly going from a high to a lower velocity.<br>
+  > **Vel:** (std_logic_vector)<br> Vector encoded with a sign value where minus values is velocity in the counterclockwise     >                                 direction and a plus values is velocity in the clockwise direction. [Number of Clock       >                                 periods between pulses]<br>
   > 
-  > **Vel Port:**<br>   std_logic_vector | encoded with a sign value where minus values is velocity in the counterclockwise     >                     direction and a plus values is velocity in the clockwise direction. [Number of Clock periods between   >                     pulses]<br>
-  > 
-  > **Acc Port:**<br>   std_logic_vector | encoded with a sign value where minus values is a decreasing acceleration and a     >                     plus values is an increasing acceleration. [Velocity delta between pulses]<br>
+  > **Acc:** (std_logic_vector)<br> Vector encoded with a sign value where minus values is a decreasing acceleration and a     >                                 plus values is an increasing acceleration. [Velocity delta between pulses]<br>
   
 ## RTL simulations of Vel_Acc.vhd
   These simulations are executed and tested with a self-checking modular testbench (TB_Vel_Acc.vhd) and
