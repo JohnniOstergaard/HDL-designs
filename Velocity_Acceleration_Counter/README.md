@@ -14,8 +14,7 @@
   > **Pulse Port:**<br>
   > std_logic | Encoder step pulse<br> 
   > 
-  > **Dir Port:**<br>  
-  > std_logic | Encoder direction<br>
+  > **Dir Port:**<br>std_logic | Encoder direction<br>
   > 
   > **Mode Port:**<br>  
   > std_logic | The normal mode is updating the (Vel) and (Acc) output ports when a pulse occurs on the input port (Pulse).
