@@ -1,5 +1,6 @@
 # Vel_Acc_Counter
-  Counting velocity and acceleration as clock cycles in between pulse.
+This design counts the velocity and acceleration as clock cycles in between pulse from a rotary decoder.<br>
+This means that a value closer to zero on the Vel port is equal to a high frequency from the rotary decoder due the to phere clock periods between pulse inputs from the rotary decoder. This may seem counterintuitive at first but it allows for a consistent scaling of the design when the bit length of the Generic values is changed. The highest frequency is limited by the clock frequency and the lower frequency by the bit length of the counter.
 
   ## Generic
   > **Bit_width:** (positive)<br> Allows easy scaling of the Port length of the Vel, Acc ports and set the length of the       >                               counter by defining the number of bits in each port.<br>
@@ -21,7 +22,7 @@
   > 
   > **Acc:** (std_logic_vector)<br> Vector encoded with a sign value where minus values is a decreasing acceleration and a     >                                 plus values is an increasing acceleration. [Velocity delta between pulses]<br>
   
-## RTL simulations of Vel_Acc.vhd
+  ## RTL simulations & verification
   These simulations are executed and tested with a self-checking modular testbench (TB_Vel_Acc.vhd) and
   The RTL trace view shown in the images below is setup with a tcl file (Vel_Acc.tcl).
 
