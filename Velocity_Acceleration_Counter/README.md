@@ -1,6 +1,6 @@
 # Vel_Acc_Counter
 This design counts the velocity and acceleration as clock cycles in between pulse from a rotary decoder.<br>
-This means that a value closer to zero on the Vel port is equal to a high frequency from the rotary decoder due the to phere clock periods between pulse inputs from the rotary decoder. This may seem counterintuitive at first but it allows for a consistent scaling of the design when the bit length of the Generic values is changed. The highest frequency is limited by the clock frequency and the lower frequency by the bit length of the counter.
+This means that a value closer to zero on the Vel port is equal to a high frequency from the rotary decoder due the to phere clock periods between pulse inputs from the rotary decoder. This may seem counterintuitive at first but it allows for a consistent scaling of the design when the bit length of the Generic values is changed. The highest velocity value is limited by the clock frequency on the Clk port and the lowerst velocity is limited by the bit length of the counter that is set by the Generic value of Bit_width.
 
   ## Generic
   > **Bit_width:** (positive)<br> Allows easy scaling of the Port length of the Vel, Acc ports and set the length of the       >                               counter by defining the number of bits in each port.<br>
