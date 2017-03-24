@@ -12,8 +12,8 @@
   > 
   > **Dir Port:**<br>   std_logic | Encoder direction<br>
   > 
-  > **Mode Port:**<br>  std_logic | The normal mode is updating the (Vel) and (Acc) output ports when a pulse occurs on the     >                     input port (Pulse).
-  >                     The Predictive mode takes it one step further and update the (Vel) and (Acc) output ports in between   >                     inputs from the (pulse) port when decreasing acceleration occurs this means a faster response           >                     when suddenly going from a high to a lower velocity.<br>
+  > **Mode Port:** (std_logic)<br> The normal mode is updating the (Vel) and (Acc) output ports when a pulse occurs on the     >                                input port (Pulse).
+  >                                The Predictive mode takes it one step further and update the (Vel) and (Acc) output ports   >                                in between inputs from the (pulse) port when decreasing acceleration occurs this means a     >                                faster response when suddenly going from a high to a lower velocity.<br>
   > 
   > **Vel Port:**<br>   std_logic_vector | encoded with a sign value where minus values is velocity in the counterclockwise     >                     direction and a plus values is velocity in the clockwise direction. [Number of Clock periods between   >                     pulses]<br>
   > 
