@@ -15,7 +15,7 @@
 #   Modified:       26-03-2017   | Added the Pre_dir signal
 #===============================================================================
 
-#Delet old library files
+#Delet old library files 
 if {[file exists work]} then {vdel -lib work -all}
 
 #Signals-----(Colors: green, cyan, orange, yellow or orchid)--------------------	
