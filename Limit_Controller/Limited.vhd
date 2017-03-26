@@ -9,7 +9,7 @@
 --   Compatibility:  VHDL-2008
 --Progress ======================================================================
 --   Status:         Development
---   Version:        1.0.2        | Major.minor.patch
+--   Version:        1.0.0        | Major.minor.patch
 --   Created:        13-10-2016
 --   Modified:       26-03-2017   | Updated the information text
 --===============================================================================
