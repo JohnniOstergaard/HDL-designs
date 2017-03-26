@@ -2,7 +2,7 @@
 #   Test script for the TB_Limited testbench.
 #Information ===================================================================
 #   File name:      Limited.tcl
-# 	 Target file:	  TB_Limited.VHDL
+# 	Target file:	  TB_Limited.VHDL
 #   Engineer:       Johnni Østergaard
 #   Copyright:      (c) 2017 Johnni Østergaard
 #   Credits:         
@@ -20,22 +20,22 @@ if {[file exists work]} then {vdel -lib work -all}
 
 #Signals-----(Colors: green, cyan, orange, yellow or orchid)--------------------	
 add wave -divider Controls
-add wave -color green	-binary 		-position insertpoint \sim:/TB_Limited/uut/Clk
-add wave -color green	-binary 		-position insertpoint \sim:/TB_Limited/uut/Rst
+add wave -color green	  -binary 	-position insertpoint \sim:/TB_Limited/uut/Clk
+add wave -color green	  -binary 	-position insertpoint \sim:/TB_Limited/uut/Rst
 
 add wave -divider Inputs
-add wave -color cyan 	-binary		-position insertpoint \sim:/TB_Limited/uut/Max
-add wave -color cyan 	-binary		-position insertpoint \sim:/TB_Limited/uut/Min
-add wave -color cyan 	-binary		-position insertpoint \sim:/TB_Limited/uut/Pre_dir
-add wave -color cyan		-binary		-position insertpoint \sim:/TB_Limited/uut/Dir
-add wave -color cyan		-unsigned	-position insertpoint \sim:/TB_Limited/uut/Duty
+add wave -color cyan 	  -binary		-position insertpoint \sim:/TB_Limited/uut/Max
+add wave -color cyan 	  -binary		-position insertpoint \sim:/TB_Limited/uut/Min
+add wave -color cyan 	  -binary		-position insertpoint \sim:/TB_Limited/uut/Pre_dir
+add wave -color cyan	  -binary		-position insertpoint \sim:/TB_Limited/uut/Dir
+add wave -color cyan	  -unsigned	-position insertpoint \sim:/TB_Limited/uut/Duty
 
 add wave -divider Outputs
-add wave -color orange	-binary		-position insertpoint \sim:/TB_Limited/uut/Q_Dir
+add wave -color orange  -binary		-position insertpoint \sim:/TB_Limited/uut/Q_Dir
 add wave -color orange	-unsigned	-position insertpoint \sim:/TB_Limited/uut/Q_Duty
 
 add wave -divider Test_bench
-add wave -color yellow              -position insertpoint \sim:/TB_Limited/Test_case
+add wave -color yellow            -position insertpoint \sim:/TB_Limited/Test_case
 
 #Simulation time/window-----(Time units: ms, us, ns)-------------------------------
 run 1000ns
