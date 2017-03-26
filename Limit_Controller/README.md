@@ -35,13 +35,13 @@ This design is a end stop limited based on the direction output from an controll
 > ![Vel_Acc_Test0_Dir0_Mode0](Image/Test0_Dir0_Mode0_RTL_view.png "Vel_Acc Test0, Dir='0',Mode='0'")
 >
 > =============================================================================<br>
-> **==================================[Min endstop Test]=============================**<br>
+> **==============================[Min endstop Test]=========================**<br>
 > =============================================================================<br>
 > **Test 1:**<br>
 > Case 0 | Testing Min endstop with different test vectors.
 > ![Vel_Acc_Test1_Dir0_Mode0](Image/Test1_Dir0_Mode0_RTL_view.png "Vel_Acc Test1, Dir='0',Mode='0'")
 > =============================================================================<br>
->> **==================================[Max endstop Test]=============================**<br>
+> **==============================[Max endstop Test]==========================**<br>
 > =============================================================================<br>
 > **Test 2:**<br>
 > Case 0 | Testing Max endstop with different test vectors.
