@@ -41,7 +41,7 @@ This design is a end stop limited based on the direction output from an controll
 > Case 0 | Testing Min endstop with different test vectors.
 > ![Min_endstop_Test1](Images/Test1_Min_endstop_RTL_view.png "Min endstop Test1")
 > =============================================================================<br>
-> **==============================[Max endstop Test]=================================**<br>
+> **==============================[Max endstop Test]===============================**<br>
 > =============================================================================<br>
 > **Test 2:**<br>
 > Case 0 | Testing Max endstop with different test vectors.
