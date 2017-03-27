@@ -38,5 +38,5 @@ add wave -divider Test_bench
 add wave -color yellow            -position insertpoint \sim:/TB_Limited/Test_case
 
 #Simulation time/window-----(Time units: ms, us, ns)-------------------------------
-run 1000ns
+run 1500ns
 wave zoom range 0ns 850ns
