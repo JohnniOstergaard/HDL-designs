@@ -32,17 +32,17 @@ This design is a end stop limited based on the direction output from an controll
 > =============================================================================<br>
 > **Test 0:**<br>
 > Case 0 | Testing the direction and Duty ports.
-> ![Vel_Acc_Test0_Dir0_Mode0](Image/Test0_Dir0_Mode0_RTL_view.png "Vel_Acc Test0, Dir='0',Mode='0'")
+> ![Dir_and_Duty_Test0](Images/Test0_Dir_and_Duty_RTL_view.png "Dir & Duty Test0")
 >
 > =============================================================================<br>
 > **==============================[Min endstop Test]=========================**<br>
 > =============================================================================<br>
 > **Test 1:**<br>
 > Case 0 | Testing Min endstop with different test vectors.
-> ![Vel_Acc_Test1_Dir0_Mode0](Image/Test1_Dir0_Mode0_RTL_view.png "Vel_Acc Test1, Dir='0',Mode='0'")
+> ![Min_endstop_Test1](Images/Test1_Min_endstop_RTL_view.png "Min endstop Test1")
 > =============================================================================<br>
 > **==============================[Max endstop Test]==========================**<br>
 > =============================================================================<br>
 > **Test 2:**<br>
 > Case 0 | Testing Max endstop with different test vectors.
-> ![Vel_Acc_Test2_Dir0_Mode0](Image/Test2_Dir0_Mode0_RTL_view.png "Vel_Acc Test2, Dir='0',Mode='0'")
+> ![Max_endstop_Test2](Images/Test2_Max_endstop_RTL_view.png "Max endstop Test2")
