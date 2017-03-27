@@ -2,12 +2,12 @@
 --   Self verifying Modular testbench for the Limited.
 --Information ===================================================================
 --   File name:      TB_Limited.VHDL
---   Target file:	   Limited.VHDL
+--   Target file:    Limited.VHDL
 --   Engineer:       Johnni Østergaard
 --   Copyright:      (c) 2017 Johnni Østergaard
 --   Credits:         
 --   License:        MIT License
---   Compatibility:	VHDL-2008
+--   Compatibility:  VHDL-2008
 --Progress ======================================================================
 --   Status:         Development
 --   Version:        1.0.0        | Major.minor.patch
@@ -26,22 +26,22 @@ entity TB_Limited is
 end TB_Limited;
 
 architecture Behavioral of TB_Limited is
-	constant Bit_width  :integer := 8;											--Channel width in bits
-	constant Clk_period :time    := 20 ns;										--1/(20ns *10^-3) = 50MHz
+	constant Bit_width  :integer := 8;						--Channel width in bits
+	constant Clk_period :time    := 20 ns;						--1/(20ns *10^-3) = 50MHz
 		
 	type State_machine is(None, Reset, Test_0, Test_1, Test_2);			--State names
-	signal Test_case: State_machine;												--State machines signal
+	signal Test_case: State_machine;						--State machines signal
 		
 	component Limited
 		port( Clk     :in  std_logic;
 		      Rst     :in  std_logic;
-				Max     :in  std_logic;
-				Min     :in  std_logic;
-				Pre_dir :in  std_logic;
-				Dir     :in  std_logic;
-				Duty    :in  std_logic_vector(7 downto 0);
-				Q_Dir   :out std_logic;
-				Q_Duty  :out std_logic_vector(7 downto 0) );
+		      Max     :in  std_logic;
+		      Min     :in  std_logic;
+		      Pre_dir :in  std_logic;
+		      Dir     :in  std_logic;
+		      Duty    :in  std_logic_vector(7 downto 0);
+		      Q_Dir   :out std_logic;
+		      Q_Duty  :out std_logic_vector(7 downto 0) );
 	end component;
 
 	signal Clk_sig     :std_logic :='0';
@@ -73,27 +73,27 @@ architecture Behavioral of TB_Limited is
 		
 		--Test vectors
 		procedure Test_vector (constant n        :in  integer;
-									  variable Vector_0 :out std_logic_vector;
-									  variable Vector_1 :out std_logic_vector;
-									  variable Vector_2 :out std_logic_vector;
-									  variable Vector_3 :out std_logic_vector )is
+				       variable Vector_0 :out std_logic_vector;
+				       variable Vector_1 :out std_logic_vector;
+				       variable Vector_2 :out std_logic_vector;
+				       variable Vector_3 :out std_logic_vector )is
 				
 			variable Vector_temp :std_logic_vector(n-1 downto 0) := (others => '0');
 		begin
 			for i in 0 to (n-1) loop
 				Vector_temp := std_logic_vector(to_unsigned(i, Vector_temp'length));
-				Vector_0(i)	:= '0';																				--B"0000_..._0000"
-				Vector_1(i) := Vector_temp(0);																--B"1010_..._1010"
-				Vector_2(i) := not Vector_temp(0);															--B"0101_..._0101"
-				Vector_3(i)	:= '1';																				--B"1111_..._1111"
+				Vector_0(i) := '0';								--B"0000_..._0000"
+				Vector_1(i) := Vector_temp(0);							--B"1010_..._1010"
+				Vector_2(i) := not Vector_temp(0);						--B"0101_..._0101"
+				Vector_3(i) := '1';								--B"1111_..._1111"
 			end loop;
 		end procedure;
 		
 		--Reset device under test
 		procedure Reset(signal Test_case  :out State_machine;
-							 signal Rst_sig    :out std_logic;
-							 signal Q_Dir_sig  :in  std_logic;
-							 signal Q_Duty_sig :in  std_logic_vector ) is
+				signal Rst_sig    :out std_logic;
+				signal Q_Dir_sig  :in  std_logic;
+				signal Q_Duty_sig :in  std_logic_vector ) is
 		begin
 			--Change state
 			Test_case <= Reset;
@@ -119,15 +119,15 @@ architecture Behavioral of TB_Limited is
 		--Procedure for test 0=====================================================================
 			--Testing Dir and Duty
 		procedure Test_input0(signal   Test_case   :out State_machine;
-									 signal   Rst_sig     :out std_logic;
-									 signal   Max_sig     :out std_logic;	
-									 signal   Min_sig     :out std_logic;
-									 signal   Pre_dir_sig :out std_logic;
-									 signal   Dir_sig     :out std_logic;
-									 signal   Duty_sig    :out std_logic_vector;
-									 signal   Q_Dir_sig   :in  std_logic;
-									 signal   Q_Duty_sig  :in  std_logic_vector;
-									 constant Pre_dir_set :in  std_logic ) is
+				      signal   Rst_sig     :out std_logic;
+				      signal   Max_sig     :out std_logic;	
+				      signal   Min_sig     :out std_logic;
+				      signal   Pre_dir_sig :out std_logic;
+				      signal   Dir_sig     :out std_logic;
+				      signal   Duty_sig    :out std_logic_vector;
+				      signal   Q_Dir_sig   :in  std_logic;
+				      signal   Q_Duty_sig  :in  std_logic_vector;
+				      constant Pre_dir_set :in  std_logic ) is
 			--Test vectors
 			variable Vector_0 :std_logic_vector(Bit_width-1 downto 0) := (others => '0');
 			variable Vector_1 :std_logic_vector(Bit_width-1 downto 0) := (others => '0');
@@ -139,19 +139,19 @@ architecture Behavioral of TB_Limited is
 		begin
 			--Reset to avoid test case dependence 	
 			Reset(Test_case  => Test_case,
-					Rst_sig    => Rst_sig,		
-					Q_Dir_sig  => Q_Dir_sig,
-					Q_Duty_sig => Q_Duty_sig );
+			      Rst_sig    => Rst_sig,		
+			      Q_Dir_sig  => Q_Dir_sig,
+			      Q_Duty_sig => Q_Duty_sig );
 			
 			--Change state
 			Test_case <= Test_0;	
 			
 			--Generated Test vectors
-			Test_vector(n        => Bit_width,												--Numbers of bits
-							Vector_0 => Vector_0,	
-							Vector_1 => Vector_1,
-							Vector_2 => Vector_2,
-							Vector_3 => Vector_3 );
+			Test_vector(n        => Bit_width,					--Numbers of bits
+				    Vector_0 => Vector_0,	
+				    Vector_1 => Vector_1,
+				    Vector_2 => Vector_2,
+				    Vector_3 => Vector_3 );
 			
 			--Setup stimulus 0
 			wait_fclk(1);
@@ -263,15 +263,15 @@ architecture Behavioral of TB_Limited is
 		--Procedure for test 1=====================================================================
 			--Testing Min endstop
 		procedure Test_input1(signal   Test_case   :out State_machine;
-									 signal   Rst_sig     :out std_logic;
-									 signal   Max_sig     :out std_logic;	
-									 signal   Min_sig     :out std_logic;
-									 signal   Pre_dir_sig :out std_logic;
-									 signal   Dir_sig     :out std_logic;
-									 signal   Duty_sig    :out std_logic_vector;
-									 signal   Q_Dir_sig   :in  std_logic;
-									 signal   Q_Duty_sig  :in  std_logic_vector;
-									 constant Pre_dir_set :in  std_logic ) is
+				      signal   Rst_sig     :out std_logic;
+				      signal   Max_sig     :out std_logic;	
+				      signal   Min_sig     :out std_logic;
+				      signal   Pre_dir_sig :out std_logic;
+				      signal   Dir_sig     :out std_logic;
+				      signal   Duty_sig    :out std_logic_vector;
+				      signal   Q_Dir_sig   :in  std_logic;
+				      signal   Q_Duty_sig  :in  std_logic_vector;
+				      constant Pre_dir_set :in  std_logic ) is
 			--Test vectors
 			variable Vector_0 :std_logic_vector(Bit_width-1 downto 0) := (others => '0');
 			variable Vector_1 :std_logic_vector(Bit_width-1 downto 0) := (others => '0');
@@ -283,19 +283,19 @@ architecture Behavioral of TB_Limited is
 		begin
 			--Reset to avoid test case dependence 	
 			Reset(Test_case  => Test_case,
-					Rst_sig    => Rst_sig,		
-					Q_Dir_sig  => Q_Dir_sig,
-					Q_Duty_sig => Q_Duty_sig );
+			      Rst_sig    => Rst_sig,		
+			      Q_Dir_sig  => Q_Dir_sig,
+			      Q_Duty_sig => Q_Duty_sig );
 			
 			--Change state
 			Test_case <= Test_1;	
 			
 			--Generated Test vectors
-			Test_vector(n        => Bit_width,												--Numbers of bits
-							Vector_0 => Vector_0,	
-							Vector_1 => Vector_1,
-							Vector_2 => Vector_2,
-							Vector_3 => Vector_3 );
+			Test_vector(n        => Bit_width,					--Numbers of bits
+				    Vector_0 => Vector_0,	
+				    Vector_1 => Vector_1,
+				    Vector_2 => Vector_2,
+				    Vector_3 => Vector_3 );
 			
 			--Setup stimulus 0
 			wait_fclk(1);
@@ -527,15 +527,15 @@ architecture Behavioral of TB_Limited is
 	--Procedure for test 2=====================================================================
 			--Testing Max endstop
 		procedure Test_input2(signal   Test_case   :out State_machine;
-									 signal   Rst_sig     :out std_logic;
-									 signal   Max_sig     :out std_logic;	
-									 signal   Min_sig     :out std_logic;
-									 signal   Pre_dir_sig :out std_logic;
-									 signal   Dir_sig     :out std_logic;
-									 signal   Duty_sig    :out std_logic_vector;
-									 signal   Q_Dir_sig   :in  std_logic;
-									 signal   Q_Duty_sig  :in  std_logic_vector;
-									 constant Pre_dir_set :in  std_logic ) is
+				      signal   Rst_sig     :out std_logic;
+				      signal   Max_sig     :out std_logic;	
+				      signal   Min_sig     :out std_logic;
+				      signal   Pre_dir_sig :out std_logic;
+				      signal   Dir_sig     :out std_logic;
+				      signal   Duty_sig    :out std_logic_vector;
+				      signal   Q_Dir_sig   :in  std_logic;
+				      signal   Q_Duty_sig  :in  std_logic_vector;
+				      constant Pre_dir_set :in  std_logic ) is
 			--Test vectors
 			variable Vector_0 :std_logic_vector(Bit_width-1 downto 0) := (others => '0');
 			variable Vector_1 :std_logic_vector(Bit_width-1 downto 0) := (others => '0');
@@ -547,19 +547,19 @@ architecture Behavioral of TB_Limited is
 		begin
 			--Reset to avoid test case dependence 	
 			Reset(Test_case  => Test_case,
-					Rst_sig    => Rst_sig,		
-					Q_Dir_sig  => Q_Dir_sig,
-					Q_Duty_sig => Q_Duty_sig );
+			      Rst_sig    => Rst_sig,		
+			      Q_Dir_sig  => Q_Dir_sig,
+			      Q_Duty_sig => Q_Duty_sig );
 			
 			--Change state
 			Test_case <= Test_2;	
 			
 			--Generated Test vectors
-			Test_vector(n        => Bit_width,												--Numbers of bits
-							Vector_0 => Vector_0,	
-							Vector_1 => Vector_1,
-							Vector_2 => Vector_2,
-							Vector_3 => Vector_3 );
+			Test_vector(n        => Bit_width,					--Numbers of bits
+				    Vector_0 => Vector_0,	
+				    Vector_1 => Vector_1,
+				    Vector_2 => Vector_2,
+				    Vector_3 => Vector_3 );
 			
 			--Setup stimulus 0
 			wait_fclk(1);
@@ -791,14 +791,14 @@ architecture Behavioral of TB_Limited is
 	begin   
 		uut: Limited
 		port map( Clk     => Clk_sig,
-					 Rst     => Rst_sig,
-					 Max     => Max_sig,
-					 Min     => Min_sig,
-					 Pre_dir => Pre_dir_sig,
-					 Dir     => Dir_sig,
-					 Duty    => Duty_sig,
-					 Q_Dir   => Q_Dir_sig,
-					 Q_Duty  => Q_Duty_sig );
+			  Rst     => Rst_sig,
+			  Max     => Max_sig,
+			  Min     => Min_sig,
+			  Pre_dir => Pre_dir_sig,
+			  Dir     => Dir_sig,
+			  Duty    => Duty_sig,
+			  Q_Dir   => Q_Dir_sig,
+			  Q_Duty  => Q_Duty_sig );
 			
 		--Main Clock
 		Clk_process: process
@@ -812,22 +812,22 @@ architecture Behavioral of TB_Limited is
 		--Test sequence====================================================================================
 		Test: process
 		begin 
-			wait for 10 ns;												--Startup time					
+			wait for 10 ns;		--Startup time					
 			
 			---------------------------------------
 			--Testing Dir and Duty
 			---------------------------------------
 			for I in std_logic range '0' to '1' loop
 				Test_input0(Test_case   => Test_case,
-								Rst_sig     => Rst_sig,
-								Max_sig     => Max_sig,
-								Min_sig     => Min_sig,
-								Pre_dir_sig => Pre_dir_sig,
-								Pre_dir_set => I,
-								Dir_sig     => Dir_sig,
-								Duty_sig    => Duty_sig,
-								Q_Dir_sig   => Q_Dir_sig,
-								Q_Duty_sig  => Q_Duty_sig );
+					    Rst_sig     => Rst_sig,
+					    Max_sig     => Max_sig,
+					    Min_sig     => Min_sig,
+					    Pre_dir_sig => Pre_dir_sig,
+					    Pre_dir_set => I,
+					    Dir_sig     => Dir_sig,
+					    Duty_sig    => Duty_sig,
+					    Q_Dir_sig   => Q_Dir_sig,
+					    Q_Duty_sig  => Q_Duty_sig );
 			end loop;
 			
 			---------------------------------------
@@ -835,15 +835,15 @@ architecture Behavioral of TB_Limited is
 			---------------------------------------
 			for I in std_logic range '0' to '1' loop
 				Test_input1(Test_case   => Test_case,
-								Rst_sig     => Rst_sig,
-								Max_sig     => Max_sig,
-								Min_sig     => Min_sig,
-								Pre_dir_sig => Pre_dir_sig,
-								Pre_dir_set => I,
-								Dir_sig     => Dir_sig,
-								Duty_sig    => Duty_sig,
-								Q_Dir_sig   => Q_Dir_sig,
-								Q_Duty_sig  => Q_Duty_sig );
+					    Rst_sig     => Rst_sig,
+					    Max_sig     => Max_sig,
+					    Min_sig     => Min_sig,
+					    Pre_dir_sig => Pre_dir_sig,
+					    Pre_dir_set => I,
+					    Dir_sig     => Dir_sig,
+					    Duty_sig    => Duty_sig,
+					    Q_Dir_sig   => Q_Dir_sig,
+					    Q_Duty_sig  => Q_Duty_sig );
 			end loop;
 			
 			---------------------------------------
@@ -851,22 +851,22 @@ architecture Behavioral of TB_Limited is
 			---------------------------------------
 			for I in std_logic range '0' to '1' loop
 				Test_input2(Test_case   => Test_case,
-								Rst_sig     => Rst_sig,
-								Max_sig     => Max_sig,
-								Min_sig     => Min_sig,
-								Pre_dir_sig => Pre_dir_sig,
-								Pre_dir_set => I,
-								Dir_sig     => Dir_sig,
-								Duty_sig    => Duty_sig,
-								Q_Dir_sig   => Q_Dir_sig,
-								Q_Duty_sig  => Q_Duty_sig );
+					    Rst_sig     => Rst_sig,
+					    Max_sig     => Max_sig,
+					    Min_sig     => Min_sig,
+					    Pre_dir_sig => Pre_dir_sig,
+					    Pre_dir_set => I,
+					    Dir_sig     => Dir_sig,
+					    Duty_sig    => Duty_sig,
+					    Q_Dir_sig   => Q_Dir_sig,
+					    Q_Duty_sig  => Q_Duty_sig );
 			end loop;
 			
 			--Reseting------------------
 --			Reset(Test_case  => Test_case,
---					Rst_sig    => Rst_sig,		
---					Q_Dir_sig  => Q_Dir_sig,
---					Q_Duty_sig => Q_Duty_sig );
+--			      Rst_sig    => Rst_sig,		
+--			      Q_Dir_sig  => Q_Dir_sig,
+--			      Q_Duty_sig => Q_Duty_sig );
 			wait;
 		end process;
 end Behavioral;
