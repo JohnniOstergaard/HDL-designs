@@ -35,13 +35,13 @@ This design is a end stop limited based on the direction output from an controll
 > ![Dir_and_Duty_Test0](Images/Test0_Dir_and_Duty_RTL_view.png "Dir & Duty Test0")
 >
 > =============================================================================<br>
-> **==============================[Min endstop Test]=========================**<br>
+> **==============================[Min endstop Test]================================**<br>
 > =============================================================================<br>
 > **Test 1:**<br>
 > Case 0 | Testing Min endstop with different test vectors.
 > ![Min_endstop_Test1](Images/Test1_Min_endstop_RTL_view.png "Min endstop Test1")
 > =============================================================================<br>
-> **==============================[Max endstop Test]==========================**<br>
+> **==============================[Max endstop Test]=================================**<br>
 > =============================================================================<br>
 > **Test 2:**<br>
 > Case 0 | Testing Max endstop with different test vectors.
